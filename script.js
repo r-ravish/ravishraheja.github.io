@@ -1,5 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================================
+     0. Hamburger Menu Toggle
+     ========================================================================= */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* =========================================================================
      1. Scroll Reveal Animations
      ========================================================================= */
   const revealObserver = new IntersectionObserver((entries, observer) => {
