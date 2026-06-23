@@ -715,3 +715,172 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* =====================
+   MOBILE MEDIA QUERIES
+   ===================== */
+@media (max-width: 768px) {
+
+  /* Nav: shrink gap and font, prevent wrapping */
+  .sticky-nav {
+    padding: 1rem 1.2rem;
+  }
+
+  .nav-links {
+    gap: 1.1rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  /* Hero */
+  .hero-section {
+    padding-top: 5rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .huge-title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .btn-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+  }
+
+  .btn-solid,
+  .btn-outline {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.3rem;
+  }
+
+  /* Info section */
+  .info-section {
+    min-height: unset;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .massive-left-text {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    min-height: unset;
+  }
+
+  .icon-row {
+    gap: 8px;
+  }
+
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Dark container */
+  .dark-container {
+    border-radius: 20px;
+    min-height: 40vh;
+    padding: 2.5rem 1.5rem;
+    transform: scale(1);
+  }
+
+  .dark-inner-text {
+    font-size: clamp(1.1rem, 5vw, 1.8rem);
+  }
+
+  /* Projects */
+  .projects-section {
+    padding: 4rem 0;
+  }
+
+  .section-heading {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .projects-scroll-container {
+    padding: 1.5rem 1.2rem;
+    gap: 1.2rem;
+  }
+
+  .project-card {
+    flex: 0 0 88vw;
+    max-width: 88vw;
+    padding: 2.5rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .project-title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .project-subtitle {
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  }
+
+  /* Certifications */
+  .hackathon-card {
+    flex: 0 0 80vw;
+    min-width: 260px;
+    max-width: 80vw;
+  }
+
+  .hackathons-grid {
+    padding: 0 1.2rem;
+  }
+
+  .hackathon-nav-pill {
+    margin-left: 1.2rem;
+  }
+
+  .hackathon-title {
+    font-size: 1.05rem;
+  }
+
+  /* General */
+  .container {
+    padding: 0 1.2rem;
+  }
+
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-link {
+    font-size: 0.75rem;
+  }
+
+  .project-card {
+    flex: 0 0 92vw;
+    max-width: 92vw;
+    padding: 2rem 1.2rem;
+  }
+
+  .hackathon-card {
+    flex: 0 0 88vw;
+    max-width: 88vw;
+  }
+}
