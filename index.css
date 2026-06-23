@@ -851,12 +851,17 @@ body {
     height: 40px;
   }
 
-  /* Dark container */
+  /* Dark container — leave side margins on mobile */
+  .dark-container-wrapper {
+    padding: 0 1.2rem;
+  }
+
   .dark-container {
     border-radius: 20px;
     min-height: 40vh;
     padding: 2.5rem 1.5rem;
     transform: scale(1);
+    width: 100%;
   }
 
   .dark-inner-text {
@@ -894,21 +899,54 @@ body {
 
   /* Certifications */
   .hackathon-card {
-    flex: 0 0 80vw;
+    flex: 0 0 82vw;
     min-width: 260px;
-    max-width: 80vw;
+    max-width: 82vw;
   }
 
   .hackathons-grid {
-    padding: 0 1.2rem;
+    padding: 0 1.4rem;
+    /* First card visible with a peek of next */
+    scroll-padding-left: 1.4rem;
+  }
+
+  /* Ensure first card doesn't start at the very edge */
+  .hackathons-grid .hackathon-card:first-child {
+    margin-left: 0;
   }
 
   .hackathon-nav-pill {
-    margin-left: 1.2rem;
+    margin-left: 1.4rem;
   }
 
   .hackathon-title {
     font-size: 1.05rem;
+  }
+
+  /* Skills marquee — touch scrollable on mobile */
+  .skills-marquee-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4rem 0;
+    align-items: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .skills-marquee-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee-track {
+    /* Let JS still drive horizontal transform but also allow native touch scroll */
+    padding: 2rem 1.4rem;
+    gap: 1.2rem;
+  }
+
+  .marquee-icon {
+    width: 76px;
+    height: 76px;
+    font-size: 2.6rem;
   }
 
   /* General */
