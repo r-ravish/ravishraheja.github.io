@@ -128,7 +128,7 @@ body {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 5vw;
 }
 
 .section-padding {
@@ -457,9 +457,9 @@ body {
   scroll-snap-type: x mandatory;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
-  padding-right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
-  scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  padding-left: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
+  padding-right: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
+  scroll-padding-left: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
   scrollbar-width: none; 
   position: relative;
   z-index: 1;
@@ -554,9 +554,9 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
-  padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
-  padding-right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
-  scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  padding-left: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
+  padding-right: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
+  scroll-padding-left: max(5vw, calc((100vw - 1400px) / 2 + 5vw));
   scrollbar-width: none;
 }
 
