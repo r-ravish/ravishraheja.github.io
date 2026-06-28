@@ -550,6 +550,9 @@ body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
+  padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  padding-right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
   scrollbar-width: none;
 }
 
