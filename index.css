@@ -455,7 +455,11 @@ body {
   gap: 2rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 2rem 5vw; 
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  padding-right: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  scroll-padding-left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
   scrollbar-width: none; 
   position: relative;
   z-index: 1;
