@@ -976,3 +976,304 @@ body {
     max-width: 88vw;
   }
 }
+
+/* =========================================================================
+   CAMPUSPAY PROJECT PAGE STYLES
+   ========================================================================= */
+
+.cp-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  text-align: center;
+}
+
+.cp-trophy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.cp-hero-mockup {
+  max-width: 1100px;
+  width: 100%;
+  margin: 3.5rem auto 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.cp-browser-bar {
+  background: rgba(245, 245, 247, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.cp-traffic-lights {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 60px;
+}
+
+.cp-traffic-lights span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cp-address-bar {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.35rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.cp-img-wrapper {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  min-height: 220px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.cp-img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cp-pitch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+}
+
+.cp-pitch-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cp-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.cp-tech-pill {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--text-dark);
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s ease;
+}
+
+.cp-tech-pill:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* Timeline */
+.cp-timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 4.5rem auto 0;
+  padding-left: 3rem;
+  border-left: 2px dashed rgba(0, 0, 0, 0.15);
+}
+
+.cp-step {
+  position: relative;
+  margin-bottom: 5rem;
+}
+
+.cp-step:last-child {
+  margin-bottom: 0;
+}
+
+.cp-step-number {
+  position: absolute;
+  left: -4.3rem;
+  top: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: var(--text-dark);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 0 0 8px var(--bg-light);
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cp-step-number.active {
+  background: var(--text-dark);
+  color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 0 0 8px var(--bg-light);
+}
+
+
+
+.cp-step-content {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 28px;
+  padding: 2.8rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cp-step-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+}
+
+.cp-dual-img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+/* Timeline images cover container completely from left to right */
+.cp-step-content .cp-img-wrapper {
+  max-height: 650px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.cp-step-content .cp-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  max-height: 650px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Force both dual grid boxes to cover in identical uniform layout */
+.cp-dual-img-grid .cp-img-wrapper {
+  height: 350px;
+  max-height: 350px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.cp-dual-img-grid .cp-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Feature Pillars Grid */
+.cp-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+}
+
+.cp-pillar-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 28px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cp-pillar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.cp-pillar-icon {
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .cp-timeline {
+    padding-left: 1.8rem;
+    border-left-width: 1px;
+  }
+
+  .cp-step-number {
+    left: -2.8rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.85rem;
+    box-shadow: 0 0 0 5px var(--bg-light);
+  }
+
+  .cp-step-content,
+  .cp-pitch-card,
+  .cp-pillar-card {
+    padding: 1.8rem;
+  }
+}
+

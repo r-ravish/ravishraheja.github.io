@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CampusPay | Ravish Raheja</title>
-  <meta name="description" content="CampusPay project details – coming soon.">
+  <meta name="description" content="CampusPay — One card. Every campus need. An IoT-powered universal campus payment tool built end-to-end.">
   <link rel="stylesheet" href="index.css">
 </head>
 
@@ -13,21 +13,241 @@
   <!-- Canvas Background for { } Particles -->
   <canvas id="particleCanvas"></canvas>
 
+  <!-- Sticky Navigation -->
   <nav class="sticky-nav">
-    <div class="nav-links">
-      <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 0.5rem;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Home
+    <div class="nav-links" style="justify-content: space-between; width: 100%; align-items: center;">
+      <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--text-dark);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
       </a>
+      <div style="display: flex; gap: 2rem;">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+      </div>
     </div>
   </nav>
 
-  <main style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-    <div class="container" style="text-align: center;">
-      <h1 class="huge-title" style="margin-bottom: 1.5rem;">Coming soon.</h1>
-      <p class="subtitle">This page is under construction. Check back shortly.</p>
-    </div>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="cp-hero container animate-up">
+      <h1 class="huge-title" style="font-size: clamp(2.9rem, 7.8vw, 6.375rem); margin-bottom: 0.5rem;">CampusPay<span class="gradient-cursor active"></span></h1>
+      <p class="subtitle" style="font-size: clamp(1.25rem, 2.4vw, 1.7375rem); font-weight: 500; color: var(--text-dark);">One card. Every campus need.</p>
+      
+      <div class="cp-hero-mockup animate-up">
+        <div class="cp-browser-bar">
+          <div class="cp-traffic-lights">
+            <span style="background: #ff5f56;"></span>
+            <span style="background: #ffbd2e;"></span>
+            <span style="background: #27c93f;"></span>
+          </div>
+          <div class="cp-address-bar">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            campuspay.app
+          </div>
+          <div style="width: 60px;"></div>
+        </div>
+        <div class="cp-img-wrapper" style="min-height: 400px;">
+          <img src="assets/campuspay/01-landing-hero.jpg" alt="CampusPay Landing Hero" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 5rem; color: #666; font-weight: 500;\'>[ Place 01-landing-hero.jpg inside assets/campuspay/ ]</div>'">
+        </div>
+      </div>
+    </section>
+
+    <!-- PITCH / OVERVIEW SECTION -->
+    <section id="overview" class="container section-padding animate-up">
+      <div style="text-align: center; max-width: 950px; margin: 0 auto;">
+        <h2 class="section-heading" style="font-size: clamp(1.9rem, 3.8vw, 2.875rem); line-height: 1.2; margin-bottom: 1.5rem;">
+          What if your student ID was the only thing you ever needed on campus?
+        </h2>
+        <p style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; max-width: 850px; margin: 0 auto;">
+          <strong style="color: var(--text-dark);">CampusPay</strong> is an IoT-powered prototype that turns a regular RFID-enabled student ID into a universal campus payment tool, built end-to-end: physical RFID hardware, a Django backend, a live web dashboard, and machine learning models running quietly underneath.
+        </p>
+      </div>
+
+      <div class="cp-tech-stack" style="margin-top: 2.5rem; margin-bottom: 4rem;">
+        <span class="cp-tech-pill">Physical RFID Hardware</span>
+        <span class="cp-tech-pill">Arduino UNO R4 WiFi</span>
+        <span class="cp-tech-pill">Django Backend</span>
+        <span class="cp-tech-pill">Live Web Dashboard</span>
+        <span class="cp-tech-pill">Random Forest ML</span>
+        <span class="cp-tech-pill">Isolation Forest Anomaly Detection</span>
+      </div>
+
+      <div class="cp-pitch-grid" style="margin-top: 0;">
+        <div class="cp-pitch-card" style="background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08);">
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">The Old Way</h3>
+          <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7;">
+            No cash. No UPI failures due to bad campus networks. No juggling separate cards or multiple apps. Student friction at every mess queue and store counter.
+          </p>
+        </div>
+        <div class="cp-pitch-card" style="border: 2px solid var(--text-dark); box-shadow: 0 15px 50px rgba(0,0,0,0.08);">
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 600;">The CampusPay Way</h3>
+          <p style="font-size: 1.15rem; color: var(--text-dark); line-height: 1.7;">
+            Just tap to eat in the mess, grab a quick snack, buy stationery — even pay at a different campus's outlet, seamlessly linked on the platform.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section id="how-it-works" class="container section-padding">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 2rem;">
+        <h2 class="section-heading" style="font-size: clamp(2.375rem, 5.8vw, 3.875rem); margin-bottom: 0.5rem;">How It Works</h2>
+        <p class="subtitle" style="font-size: clamp(1.05rem, 1.9vw, 1.4375rem);">A real walkthrough of the working prototype, end to end.</p>
+      </div>
+
+      <div class="cp-timeline">
+        <!-- Step 1 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">01</div>
+          <div class="cp-step-content">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600;">Dashboard & Wallet Overview</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              Student logs in and lands on their dashboard — mess credits, campus credits, and recent activity at a glance.
+            </p>
+            <div class="cp-img-wrapper" style="border-radius: 16px;">
+              <img src="assets/campuspay/02-dashboard.jpg" alt="Student Dashboard" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 3rem; color: #888;\'>[ Place 02-dashboard.jpg inside assets/campuspay/ ]</div>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">02</div>
+          <div class="cp-step-content">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600;">Universal Outlet Browsing</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              Browses campus outlets — mess, canteen, stationery shop, juice bar — all unified under one cohesive platform.
+            </p>
+            <div class="cp-img-wrapper" style="border-radius: 16px;">
+              <img src="assets/campuspay/03-store-outlets.jpg" alt="Store Outlets" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 3rem; color: #888;\'>[ Place 03-store-outlets.jpg inside assets/campuspay/ ]</div>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">03</div>
+          <div class="cp-step-content">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600;">Seamless Ordering</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              Orders an item. Picks "Sunrise Citrus Boost" from Sip Station for 24 credits directly from the live menu.
+            </p>
+            <div class="cp-img-wrapper" style="border-radius: 16px;">
+              <img src="assets/campuspay/04-outlet-menu.jpg" alt="Outlet Menu" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 3rem; color: #888;\'>[ Place 04-outlet-menu.jpg inside assets/campuspay/ ]</div>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">04</div>
+          <div class="cp-step-content">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600;">Tap Confirmation Prompt</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              Confirms with a tap. The web app pauses and asks the student to scan their RFID card at the physical terminal — no typed PIN, no app switching required.
+            </p>
+            <div class="cp-img-wrapper" style="border-radius: 16px;">
+              <img src="assets/campuspay/07-payment-modal.jpg" alt="Payment Confirmation Modal" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 3rem; color: #888;\'>[ Place 07-payment-modal.jpg inside assets/campuspay/ ]</div>'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">05</div>
+          <div class="cp-step-content">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600;">Listening Hardware Terminal</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              The terminal is listening. An Arduino UNO R4 WiFi + MFRC522 RFID reader sits wired up and waiting, OLED screen displaying "CampusPay — Scan Card."
+            </p>
+            <div class="cp-dual-img-grid">
+              <div class="cp-img-wrapper" style="border-radius: 16px;">
+                <img src="assets/campuspay/05-rfid-circuit-wide.jpg" alt="RFID Circuit Wide View" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 2rem; color: #888;\'>[ 05-rfid-circuit-wide.jpg ]</div>'">
+              </div>
+              <div class="cp-img-wrapper" style="border-radius: 16px;">
+                <img src="assets/campuspay/06-rfid-circuit-oled.jpg" alt="RFID Circuit OLED Display" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 2rem; color: #888;\'>[ 06-rfid-circuit-oled.jpg ]</div>'">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="cp-step animate-up">
+          <div class="cp-step-number">06</div>
+          <div class="cp-step-content" style="border-color: rgba(40, 167, 69, 0.3);">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.8rem; font-weight: 600; color: #1e7e34;">Instant Execution & Feedback</h3>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.8rem; line-height: 1.6;">
+              Tap. Done. Card is recognized, payment is confirmed, OLED lights up green: <strong style="color: #1e7e34;">"SUCCESS! Student: Ravish."</strong> Credits are deducted instantly and reflected back on the dashboard.
+            </p>
+            <div class="cp-img-wrapper" style="border-radius: 16px;">
+              <img src="assets/campuspay/08-rfid-success.jpg" alt="RFID Success Confirmation" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding: 3rem; color: #888;\'>[ Place 08-rfid-success.jpg inside assets/campuspay/ ]</div>'">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE PILLARS SECTION -->
+    <section id="architecture" class="container section-padding" style="margin-bottom: 6rem;">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 1rem;">
+        <h2 class="section-heading" style="font-size: clamp(2.375rem, 5.8vw, 3.875rem); margin-bottom: 0.5rem;">What's Actually Working</h2>
+        <p class="subtitle" style="font-size: clamp(1.05rem, 1.9vw, 1.4375rem);">Production-grade intelligence & architecture, not just a concept.</p>
+      </div>
+
+      <div class="cp-pillars-grid">
+        <!-- Pillar 1 -->
+        <div class="cp-pillar-card animate-up">
+          <div class="cp-pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; color: var(--text-dark);">Seamless Cashless Payments</h3>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">
+            A student's everyday RFID-enabled ID becomes the universal payment tool. A dual-wallet system splits "Mess Credits" (meals) from "Campus Credits" (canteen, stationery, and more) — tap-to-eat in the mess, order-then-tap in stores, with cross-campus interoperability built into the architecture.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="cp-pillar-card animate-up">
+          <div class="cp-pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 20V10M12 20V4M6 20v-6" />
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; color: var(--text-dark);">Smart Mess Management</h3>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">
+            A Random Forest Regressor predicts exactly how much food the mess needs to prepare each day, factoring in attendance patterns, exam schedules, festivals, and menu trends — cutting food waste at the source instead of guessing.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="cp-pillar-card animate-up">
+          <div class="cp-pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; font-weight: 600; color: var(--text-dark);">Privacy-First Wellbeing Monitoring</h3>
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 0;">
+            A passive anomaly detection layer (Isolation Forest + time-series analysis) watches transaction patterns — skipped meals, irregular timings, reduced activity — for early signs of burnout or isolation. It surfaces anonymized alerts to counselors, never raw student data, so support can be offered early without anyone being watched.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Image Modal (LightBox) -->
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Zoomed View">
+  </div>
+
+  <footer style="text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted);">
+    <p style="font-weight: 500;">Designed & Built by Ravish Raheja © 2026</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

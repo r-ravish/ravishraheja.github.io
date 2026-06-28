@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageModal = document.getElementById("imageModal");
   const modalImage = document.getElementById("modalImage");
   const closeImageModalBtn = document.querySelector(".close-modal");
-  const certImages = document.querySelectorAll('.hackathon-img-wrapper img');
+  const certImages = document.querySelectorAll('.hackathon-img-wrapper img, .cp-img-wrapper img');
   
   if (imageModal && modalImage) {
     certImages.forEach(img => {
@@ -445,6 +445,57 @@ document.addEventListener('DOMContentLoaded', () => {
         closeImageModal();
       }
     });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && imageModal.style.display === 'flex') {
+        closeImageModal();
+      }
+    });
+  }
+
+  // Timeline Scroll Animation
+  const timeline = document.querySelector('.cp-timeline');
+  const stepNumbers = document.querySelectorAll('.cp-step-number');
+
+  if (timeline && stepNumbers.length > 0) {
+    const updateTimelineScroll = () => {
+      const windowHeight = window.innerHeight;
+      const triggerPoint = windowHeight * 0.45;
+      
+      let activeIndex = -1;
+      let minDistance = Infinity;
+
+      stepNumbers.forEach((num, index) => {
+        const stepCard = num.closest('.cp-step');
+        if (stepCard) {
+          const rect = stepCard.getBoundingClientRect();
+          // Check if trigger point is within this step's bounds or closest to its center
+          if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+            activeIndex = index;
+          } else {
+            const distance = Math.abs((rect.top + rect.height / 2) - triggerPoint);
+            if (activeIndex === -1 && distance < minDistance) {
+              minDistance = distance;
+              activeIndex = index;
+            }
+          }
+        }
+      });
+
+      stepNumbers.forEach((num, index) => {
+        if (index === activeIndex) {
+          num.classList.add('active');
+        } else {
+          num.classList.remove('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(updateTimelineScroll);
+    }, { passive: true });
+
+    updateTimelineScroll();
   }
 });
 
