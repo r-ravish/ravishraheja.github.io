@@ -49,6 +49,7 @@
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          background: #fafafa;
         }
 
         .standard-track {
@@ -69,6 +70,65 @@
           height: 100%;
           object-fit: cover;
           display: block;
+        }
+
+        /* 4th slide custom CSS */
+        .services-slide {
+          padding: 2rem 4rem;
+          height: 100%;
+          background: url('assets/smartbase/problem_final.jpg') center/cover no-repeat;
+          /* We will use a white overlay to fade out the background sketch and just keep the paper texture */
+          position: relative;
+          display: flex;
+          flex-direction: column;
+        }
+        .services-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(255,255,255,0.92);
+          z-index: 1;
+        }
+        .services-content {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .services-title {
+          font-family: 'Caveat', cursive, sans-serif;
+          font-size: 3rem;
+          text-align: center;
+          margin-bottom: 1.5rem;
+          color: #222;
+        }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 1rem;
+          overflow-y: auto;
+          padding-bottom: 2rem;
+          flex: 1;
+        }
+        .svc-card {
+          background: rgba(255,255,255,0.7);
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 8px;
+          padding: 1rem;
+          font-size: 0.9rem;
+          display: flex;
+          flex-direction: column;
+        }
+        .svc-title {
+          font-weight: 600;
+          font-family: 'Caveat', cursive, sans-serif;
+          font-size: 1.4rem;
+          margin-bottom: 0.5rem;
+          color: #111;
+        }
+        .svc-desc {
+          color: #444;
+          line-height: 1.4;
         }
 
         /* Navigation Buttons */
@@ -101,22 +161,75 @@
           
           <!-- Slide 1 -->
           <div class="standard-slide">
-            <img src="assets/smartbase/problem_16x9.jpg" alt="Problem Statement" />
+            <img src="assets/smartbase/problem_final.jpg" alt="Problem Statement" />
           </div>
 
           <!-- Slide 2 -->
           <div class="standard-slide">
-            <img src="assets/smartbase/architecture_16x9.jpg" alt="Architecture" />
+            <img src="assets/smartbase/architecture_final.jpg" alt="Architecture" />
           </div>
 
           <!-- Slide 3 -->
           <div class="standard-slide">
-            <img src="assets/smartbase/features_16x9.jpg" alt="Features" />
+            <img src="assets/smartbase/features_final.jpg" alt="Features" />
           </div>
 
-          <!-- Slide 4 -->
-          <div class="standard-slide">
-            <img src="assets/smartbase/scalable_16x9.jpg" alt="Why It is Scalable" />
+          <!-- Slide 4: Static Services Grid -->
+          <div class="standard-slide services-slide">
+            <div class="services-overlay"></div>
+            <div class="services-content">
+               <h3 class="services-title">Azure Services Used</h3>
+               <div class="services-grid">
+                 <div class="svc-card">
+                   <div class="svc-title">Microsoft Foundry</div>
+                   <div class="svc-desc">Foundry project, Agent Service, agent `enterprise-knowledge-agent`, Foundry IQ/knowledge base</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure AI Search</div>
+                   <div class="svc-desc">RAG knowledge index and document retrieval</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure OpenAI</div>
+                   <div class="svc-desc">Embeddings/model capabilities used by the RAG/agent pipeline</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure AI Content Safety</div>
+                   <div class="svc-desc">Responsible-AI/content screening</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure DB for PostgreSQL</div>
+                   <div class="svc-desc">Application database, users, conversations, tickets, feedback, etc.</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure Container Apps</div>
+                   <div class="svc-desc">Hosting the FastAPI backend and MCP server</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure Container Registry</div>
+                   <div class="svc-desc">Storing the Docker images for backend/MCP</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure Key Vault</div>
+                   <div class="svc-desc">Secure storage of application secrets/credentials</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Azure Log Analytics</div>
+                   <div class="svc-desc">Container/App logs and troubleshooting</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Microsoft Entra ID</div>
+                   <div class="svc-desc">Authentication/identity for Azure resources and Foundry access</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Managed Identity</div>
+                   <div class="svc-desc">System-assigned identity used by the production backend to authenticate with Foundry</div>
+                 </div>
+                 <div class="svc-card">
+                   <div class="svc-title">Entra App Registration</div>
+                   <div class="svc-desc">We experimented with this for the cross-tenant setup before moving the backend into the Foundry tenant</div>
+                 </div>
+               </div>
+            </div>
           </div>
 
         </div>
