@@ -38,47 +38,186 @@
     </section>
 
     <!-- OVERVIEW & ARCHITECTURE CAROUSEL -->
-    <section id="overview" class="container section-padding" style="padding-top: 0; margin-top: 2.5rem;">
-      <div class="carousel-container cp-img-wrapper animate-up" style="border-radius: 16px; margin: 0 auto; width: 80%; max-width: 950px; position: relative; overflow: hidden;">
+    <section id="overview" class="section-padding" style="padding-top: 0; margin-top: 2.5rem;">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
         
-        <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 0.5s ease-in-out; width: 100%;">
+        .notebook-carousel {
+          position: relative;
+          width: 90vw;
+          max-width: 1100px;
+          margin: 0 auto;
+          aspect-ratio: 16 / 9;
+          background-color: #f9f8f3;
+          background-image: 
+            linear-gradient(#e1d8c9 1px, transparent 1px),
+            linear-gradient(90deg, #e1d8c9 1px, transparent 1px);
+          background-size: 30px 30px;
+          background-position: center center;
+          border-radius: 12px;
+          box-shadow: 0 15px 40px rgba(0,0,0,0.12), inset 0 0 40px rgba(0,0,0,0.02);
+          overflow: hidden;
+          border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Red margin line on the left */
+        .notebook-carousel::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 80px;
+          width: 2px;
+          background-color: rgba(255, 100, 100, 0.4);
+          z-index: 1;
+        }
+
+        .notebook-track {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .notebook-slide {
+          min-width: 100%;
+          height: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3rem 4rem 3rem 100px; /* Padding for the red margin */
+          box-sizing: border-box;
+          z-index: 2;
+        }
+
+        /* Blend the sketches seamlessly into the notebook */
+        .notebook-slide img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          mix-blend-mode: multiply;
+          opacity: 0.9;
+        }
+
+        /* Handwriting styles for Slide 4 */
+        .hw-container {
+          font-family: 'Caveat', cursive;
+          color: #222;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 2rem;
+        }
+        
+        .hw-title {
+          font-size: clamp(3rem, 5vw, 4.5rem);
+          margin-bottom: 2rem;
+          font-weight: 700;
+          transform: rotate(-2deg);
+        }
+
+        .hw-line {
+          font-size: clamp(2rem, 3.5vw, 3rem);
+          line-height: 1.5;
+          margin-bottom: 1.5rem;
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        }
+
+        .hw-line.active {
+          animation: drawText 1.5s ease-out forwards;
+        }
+
+        @keyframes drawText {
+          to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        /* Navigation Buttons */
+        .nb-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: rgba(255,255,255,0.9);
+          border: 1px solid rgba(0,0,0,0.1);
+          color: #333;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          z-index: 10;
+          transition: all 0.2s;
+        }
+        .nb-btn:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
+        .nb-prev { left: 15px; }
+        .nb-next { right: 15px; }
+        
+        @media (max-width: 768px) {
+           .notebook-carousel { aspect-ratio: 1 / 1; }
+           .notebook-slide { padding-left: 60px; }
+           .notebook-carousel::before { left: 40px; }
+        }
+      </style>
+
+      <div class="notebook-carousel animate-up">
+        <div class="notebook-track" id="nbTrack">
           
-          <!-- Slide 1: Problem Sketch -->
-          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <img src="assets/smartbase/problem_sketch.jpg" alt="Problem Statement" style="width: 100%; border-radius: 8px;" />
+          <!-- Slide 1 -->
+          <div class="notebook-slide">
+            <img src="assets/smartbase/problem_sketch.jpg" alt="Problem Statement" />
           </div>
 
-          <!-- Slide 2: Architecture Sketch -->
-          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <img src="assets/smartbase/architecture.jpg" alt="Architecture Diagram" style="width: 100%; border-radius: 8px;" />
+          <!-- Slide 2 -->
+          <div class="notebook-slide">
+            <img src="assets/smartbase/architecture.jpg" alt="Architecture" />
           </div>
-          <!-- Slide 3: Features Sketch -->
-          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <img src="assets/smartbase/features_sketch.jpg" alt="Core Features" style="width: 100%; border-radius: 8px;" />
+
+          <!-- Slide 3 -->
+          <div class="notebook-slide">
+            <img src="assets/smartbase/features_sketch.jpg" alt="Features" />
           </div>
-          <!-- Slide 4: Scalability Sketch -->
-          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <img src="assets/smartbase/scalable_sketch.jpg" alt="Why It is Scalable" style="width: 100%; border-radius: 8px;" />
+
+          <!-- Slide 4: Animated Handwriting -->
+          <div class="notebook-slide">
+            <div class="hw-container">
+              <div class="hw-title">Why It is Scalable</div>
+              <div class="hw-line" style="animation-delay: 0.2s;">1. Azure AI Search (Vector Retrieval)</div>
+              <div class="hw-line" style="animation-delay: 1.2s;">2. Azure AI Foundry (Agent Orchestration)</div>
+              <div class="hw-line" style="animation-delay: 2.2s;">3. Serverless Container Apps (Fast Deployment)</div>
+            </div>
           </div>
 
         </div>
 
-        <!-- Controls -->
-        <button onclick="moveSlide(-1)" style="position: absolute; top: 50%; left: 1rem; transform: translateY(-50%); background: rgba(255,255,255,0.8); color: #333; border: 1px solid #ddd; padding: 0; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; z-index: 10;">&#10094;</button>
-        <button onclick="moveSlide(1)" style="position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); background: rgba(255,255,255,0.8); color: #333; border: 1px solid #ddd; padding: 0; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; z-index: 10;">&#10095;</button>
-
+        <button class="nb-btn nb-prev" onclick="moveNbSlide(-1)">&#10094;</button>
+        <button class="nb-btn nb-next" onclick="moveNbSlide(1)">&#10095;</button>
       </div>
-      
-      <script>
-        let currentSlide = 0;
-        function moveSlide(direction) {
-          const track = document.getElementById('carouselTrack');
-          const slides = document.querySelectorAll('.carousel-slide');
-          currentSlide = (currentSlide + direction + slides.length) % slides.length;
-          track.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-        
 
+      <script>
+        let nbCurrentSlide = 0;
+        function moveNbSlide(direction) {
+          const track = document.getElementById('nbTrack');
+          const slides = document.querySelectorAll('.notebook-slide');
+          nbCurrentSlide = (nbCurrentSlide + direction + slides.length) % slides.length;
+          track.style.transform = `translateX(-${nbCurrentSlide * 100}%)`;
+          
+          // Trigger animations on slide 4
+          if(nbCurrentSlide === 3) {
+             const lines = document.querySelectorAll('.hw-line');
+             lines.forEach(line => {
+                line.classList.remove('active');
+                // Force reflow
+                void line.offsetWidth;
+                line.classList.add('active');
+             });
+          }
+        }
       </script>
     </section>
 
