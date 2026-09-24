@@ -37,23 +37,44 @@
 
     </section>
 
-    <!-- OVERVIEW / PROBLEM STATEMENT -->
+    <!-- OVERVIEW & ARCHITECTURE CAROUSEL -->
     <section id="overview" class="container section-padding" style="padding-top: 0; margin-top: 2.5rem;">
-      <div class="cp-img-wrapper animate-up" style="border-radius: 16px; margin: 0 auto; width: 80%; max-width: 950px; background: #fdfdfd; padding: 2rem; border: 1px solid rgba(0,0,0,0.05);">
-        <img src="assets/smartbase/problem_sketch.jpg" alt="The problem is not a lack of information. It is a lack of findability and actionability." style="width: 100%; border-radius: 8px;" />
-      </div>
-    </section>
+      <div class="carousel-container cp-img-wrapper animate-up" style="border-radius: 16px; margin: 0 auto; width: 80%; max-width: 950px; background: #fdfdfd; padding: 2rem; border: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden;">
+        
+        <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 0.5s ease-in-out; width: 100%;">
+          
+          <!-- Slide 1: Problem Sketch -->
+          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/smartbase/problem_sketch.jpg" alt="Problem Statement" style="width: 100%; border-radius: 8px;" />
+          </div>
 
-    <!-- ARCHITECTURE DIAGRAM -->
-    <section id="architecture" class="container section-padding">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; margin-bottom: 3rem;">
-        <h2 class="section-heading" style="font-size: clamp(2.375rem, 5.8vw, 3.875rem); margin-bottom: 0.5rem;">Architecture</h2>
-        <p class="subtitle" style="font-size: clamp(1.05rem, 1.9vw, 1.4375rem);">End-to-End RAG Pipeline & MCP Tool Integration</p>
-      </div>
+          <!-- Slide 2: Architecture Sketch -->
+          <div class="carousel-slide" style="min-width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/smartbase/architecture.jpg" alt="Architecture Diagram" style="width: 100%; border-radius: 8px;" />
+          </div>
 
-      <div class="cp-img-wrapper animate-up" style="border-radius: 16px; margin: 0 auto; width: 80%; max-width: 950px; background: #fdfdfd; padding: 2rem; border: 1px solid rgba(0,0,0,0.05);">
-        <img src="assets/smartbase/architecture.jpg" alt="Hand-drawn Architecture Diagram" style="width: 100%; border-radius: 8px;" />
+        </div>
+
+        <!-- Controls -->
+        <button onclick="moveSlide(-1)" style="position: absolute; top: 50%; left: 1rem; transform: translateY(-50%); background: rgba(255,255,255,0.8); color: #333; border: 1px solid #ddd; padding: 0; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; z-index: 10;">&#10094;</button>
+        <button onclick="moveSlide(1)" style="position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); background: rgba(255,255,255,0.8); color: #333; border: 1px solid #ddd; padding: 0; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; z-index: 10;">&#10095;</button>
+
       </div>
+      
+      <script>
+        let currentSlide = 0;
+        function moveSlide(direction) {
+          const track = document.getElementById('carouselTrack');
+          const slides = document.querySelectorAll('.carousel-slide');
+          currentSlide = (currentSlide + direction + slides.length) % slides.length;
+          track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        // Auto-slide to Architecture diagram after 2 minutes (120000 ms) as requested
+        setTimeout(() => {
+            if(currentSlide === 0) moveSlide(1);
+        }, 120000);
+      </script>
     </section>
 
     <!-- OWNERSHIP & IMPACT -->
