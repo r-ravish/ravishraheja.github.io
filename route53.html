@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route53 Clone | Ravish Raheja</title>
+  <meta name="description" content="AWS Route 53-inspired with full CRUD and authentication.">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <!-- Canvas Background for particles -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Sticky Navigation -->
+  <nav class="sticky-nav">
+    <div class="nav-links" style="justify-content: space-between; width: 100%; align-items: center;">
+      <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--text-dark);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </a>
+      <div style="display: flex; gap: 2rem;">
+        <a href="https://route53-clone-5.vercel.app/" target="_blank" class="nav-link" style="color: #ff5f56; font-weight: 600;">Live Project ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="cp-hero container animate-up">
+      <h1 class="huge-title typewriter" style="font-size: clamp(2.2rem, 6.5vw, 5.5rem); margin-top: 3.5rem; margin-bottom: 0.5rem; white-space: nowrap;">Route53 Clone<span class="gradient-cursor active"></span></h1>
+      <p class="subtitle" style="font-size: clamp(1.055rem, 2vw, 1.525rem); font-weight: 500; color: var(--text-dark);">A fully functional DNS management platform inspired by AWS Route 53, featuring complete CRUD operations and secure authentication.</p>
+    </section>
+
+    <section class="section-padding">
+      <style>
+        .demo-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+        }
+
+        .login-card {
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 12px;
+          padding: 2rem;
+          margin: 0 auto 4rem;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 800px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+          gap: 2rem;
+        }
+
+        .login-info {
+          flex: 1;
+          font-size: 1.1rem;
+          color: var(--text-muted);
+        }
+
+        .login-creds {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .cred-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #ffffff;
+          padding: 0.85rem 1.25rem;
+          border-radius: 8px;
+          border: 1px solid rgba(0,0,0,0.06);
+          font-family: monospace;
+          transition: all 0.2s;
+        }
+
+        .cred-item:hover {
+          border-color: rgba(0,0,0,0.15);
+          background: var(--bg-light);
+        }
+
+        .cred-label {
+          color: var(--text-muted);
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .cred-value {
+          color: var(--text-dark);
+          font-weight: 600;
+          font-size: 1.05rem;
+        }
+
+        @media (max-width: 768px) {
+          .login-card {
+            flex-direction: column;
+            align-items: stretch;
+          }
+        }
+      </style>
+
+      <div class="demo-container">
+        <div class="login-card animate-up">
+          <div class="login-info">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark); font-size: 1.2rem;">Demo Access</h4>
+            <p>To access the live project, please log in with the following test credentials:</p>
+          </div>
+          <div class="login-creds">
+            <div class="cred-item">
+              <span class="cred-label">Username</span>
+              <span class="cred-value">admin</span>
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">Password</span>
+              <span class="cred-value">admin123</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
