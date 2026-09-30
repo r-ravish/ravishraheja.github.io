@@ -223,8 +223,8 @@
     <!-- LIVE DEMO SECTION -->
     <section id="live-demo" class="section-padding" style="position: relative;">
       <style>
-        .timeline-container {
-          max-width: 900px;
+        .demo-container {
+          max-width: 1200px;
           margin: 0 auto;
           padding: 2rem 1rem;
         }
@@ -254,13 +254,13 @@
           border: 1px solid rgba(0,0,0,0.1);
           border-radius: 12px;
           padding: 2rem;
-          margin: 0 auto 5rem;
+          margin: 0 auto 4rem;
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
           max-width: 800px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
           gap: 2rem;
         }
 
@@ -285,102 +285,100 @@
           margin: 0.25rem 0;
         }
 
-        /* Vertical Timeline */
-        .timeline {
-          position: relative;
-          padding-left: 3rem;
-        }
-        
-        .timeline::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 2px;
-          background: rgba(0,0,0,0.1);
+        /* Sleek Grid Layout */
+        .feature-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
         }
 
-        .timeline-item {
-          position: relative;
-          margin-bottom: 4rem;
-        }
-
-        .timeline-item:last-child {
-          margin-bottom: 0;
-        }
-
-        .timeline-dot {
-          position: absolute;
-          left: -3rem;
-          top: 0;
-          width: 32px;
-          height: 32px;
-          background: #000;
-          color: #fff;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          font-size: 0.9rem;
-          transform: translateX(-50%);
-          box-shadow: 0 0 0 4px var(--bg-light);
-          z-index: 2;
-        }
-
-        .timeline-content {
-          background: #fff;
+        .feature-card {
+          background: #ffffff;
           border: 1px solid rgba(0,0,0,0.08);
           border-radius: 12px;
-          padding: 2rem;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 2.5rem;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          overflow: hidden;
+          z-index: 1;
         }
 
-        .timeline-content:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        .feature-card::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 12px;
+          padding: 2px;
+          background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
         }
 
-        .timeline-category {
+        .feature-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+          border-color: transparent;
+        }
+
+        .feature-card:hover::before {
+          opacity: 1;
+        }
+
+        .fc-number {
           font-size: 0.85rem;
-          text-transform: uppercase;
+          font-family: monospace;
+          color: #888;
+          margin-bottom: 1.5rem;
           letter-spacing: 0.05em;
-          color: #666;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          display: block;
         }
 
-        .timeline-prompt {
-          font-size: 1.3rem;
+        .fc-title {
+          font-size: 1.25rem;
           font-weight: 600;
           color: var(--text-dark);
           margin-bottom: 1rem;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.75rem;
+          letter-spacing: -0.01em;
         }
 
-        .timeline-prompt::before {
-          content: '>';
+        .fc-prompt {
+          font-family: monospace;
+          font-size: 0.95rem;
           color: #000;
-          opacity: 0.5;
+          background: var(--bg-light);
+          padding: 1rem;
+          border-radius: 6px;
+          margin-bottom: 1.5rem;
+          border: 1px solid rgba(0,0,0,0.05);
+          position: relative;
         }
 
-        .timeline-desc {
-          font-size: 1.1rem;
+        .fc-prompt::before {
+          content: '>';
+          color: #ff5f56;
+          margin-right: 8px;
+          font-weight: bold;
+        }
+
+        .fc-desc {
+          font-size: 1.05rem;
           color: var(--text-muted);
           line-height: 1.6;
-          margin: 0;
+          margin-top: auto; /* pushes desc to bottom if grid items vary in height */
         }
 
         .disclaimer-note {
           text-align: center;
           font-size: 0.95rem;
           color: #888;
-          margin-top: 5rem;
+          margin-top: 4rem;
           font-style: italic;
         }
 
@@ -389,19 +387,13 @@
             flex-direction: column;
             align-items: stretch;
           }
-          .timeline {
-            padding-left: 2rem;
-          }
-          .timeline-dot {
-            left: -2rem;
-            width: 28px;
-            height: 28px;
-            font-size: 0.8rem;
+          .feature-grid {
+            grid-template-columns: 1fr;
           }
         }
       </style>
 
-      <div class="timeline-container">
+      <div class="demo-container">
         
         <div class="demo-header animate-up">
           <h2 class="demo-title">Explore the Live Demo</h2>
@@ -419,66 +411,54 @@
           </div>
         </div>
 
-        <div class="timeline">
+        <div class="feature-grid">
           
-          <!-- Item 1 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">1</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Policy Query</span>
-              <div class="timeline-prompt">What is the company work from home policy?</div>
-              <p class="timeline-desc">The agent retrieves the exact answer from the internal knowledge base and provides a clean, clickable citation link to the source document.</p>
-            </div>
+          <!-- Card 1 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">01 / POLICY</div>
+            <h3 class="fc-title">Policy Query</h3>
+            <div class="fc-prompt">What is the company WFH policy?</div>
+            <p class="fc-desc">The agent retrieves the exact answer from the internal knowledge base and provides a clean, clickable citation link to the source document.</p>
           </div>
 
-          <!-- Item 2 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">2</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Data Aggregation</span>
-              <div class="timeline-prompt">What is the company leave policy?</div>
-              <p class="timeline-desc">Watch how it effortlessly aggregates multiple distinct leave types directly from dispersed internal documentation into a single cohesive response.</p>
-            </div>
+          <!-- Card 2 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">02 / AGGREGATION</div>
+            <h3 class="fc-title">Data Aggregation</h3>
+            <div class="fc-prompt">What is the company leave policy?</div>
+            <p class="fc-desc">Watch how it effortlessly aggregates multiple distinct leave types directly from dispersed internal documentation into a cohesive response.</p>
           </div>
 
-          <!-- Item 3 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">3</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Agent Actions (MCP)</span>
-              <div class="timeline-prompt">My laptop screen is broken. I need technical support.</div>
-              <p class="timeline-desc">The agent recognizes the intent, asks for confirmation, and creates a real, actionable support ticket via Model Context Protocol (MCP).</p>
-            </div>
+          <!-- Card 3 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">03 / ACTIONS (MCP)</div>
+            <h3 class="fc-title">Agent Actions</h3>
+            <div class="fc-prompt">My screen is broken. I need help.</div>
+            <p class="fc-desc">The agent recognizes the intent, asks for confirmation, and creates a real, actionable support ticket via Model Context Protocol.</p>
           </div>
 
-          <!-- Item 4 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">4</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Database Retrieval</span>
-              <div class="timeline-prompt">What is the status of my support ticket?</div>
-              <p class="timeline-desc">It dynamically queries your user account to pull live open ticket statuses straight from the Postgres database securely.</p>
-            </div>
+          <!-- Card 4 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">04 / INTEGRATION</div>
+            <h3 class="fc-title">Database Retrieval</h3>
+            <div class="fc-prompt">Status of my support ticket?</div>
+            <p class="fc-desc">It dynamically queries your user account to pull live open ticket statuses straight from the Postgres database securely.</p>
           </div>
 
-          <!-- Item 5 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">5</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Responsible AI</span>
-              <div class="timeline-prompt">What are the company's internal database passwords?</div>
-              <p class="timeline-desc">The system recognizes the sensitive intent and safely refuses or redirects the query instead of inventing or leaking credentials.</p>
-            </div>
+          <!-- Card 5 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">05 / SECURITY</div>
+            <h3 class="fc-title">Responsible AI</h3>
+            <div class="fc-prompt">What are the DB passwords?</div>
+            <p class="fc-desc">The system recognizes sensitive intent and safely refuses or redirects the query instead of inventing or leaking credentials.</p>
           </div>
 
-          <!-- Item 6 -->
-          <div class="timeline-item animate-up">
-            <div class="timeline-dot">6</div>
-            <div class="timeline-content">
-              <span class="timeline-category">Out-of-Scope Fallback</span>
-              <div class="timeline-prompt">Can you write a poem about the capital of France?</div>
-              <p class="timeline-desc">SmartBase gracefully recognizes when a request falls entirely outside its supported enterprise scope and gently declines.</p>
-            </div>
+          <!-- Card 6 -->
+          <div class="feature-card animate-up">
+            <div class="fc-number">06 / GUARDRAILS</div>
+            <h3 class="fc-title">Out-of-Scope Fallback</h3>
+            <div class="fc-prompt">Write a poem about France.</div>
+            <p class="fc-desc">SmartBase gracefully recognizes when a request falls entirely outside its supported enterprise scope and gently declines.</p>
           </div>
 
         </div>
