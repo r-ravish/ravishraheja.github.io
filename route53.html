@@ -37,109 +37,59 @@
         align-items: center;
       }
 
-      .auth-portal {
-        width: 100%;
-        max-width: 600px;
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-        border: 1px solid rgba(0,0,0,0.06);
-        text-align: center;
-        margin-bottom: 4rem;
-        animation: fadeUp 0.8s ease-out forwards;
-      }
-
-      .auth-header h3 {
-        font-size: 1.35rem;
-        margin-bottom: 0.5rem;
-        color: var(--text-dark);
-      }
-
-      .auth-header p {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-      }
-
-      .auth-creds {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-      }
-
-      .auth-cred-item {
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.85rem 1.25rem;
-        background: var(--bg-light);
-        border-radius: 8px;
-        border: 1px solid rgba(0,0,0,0.05);
-        transition: all 0.2s;
-      }
-
-      .auth-cred-item:hover {
-        border-color: rgba(0,0,0,0.15);
-        background: #ffffff;
-      }
-
-      .cred-label {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        font-weight: 600;
-        letter-spacing: 0.05em;
-      }
-
-      .cred-value {
-        font-family: monospace;
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: var(--text-dark);
-      }
-
-      /* MacBook Mockup */
+      /* Realistic MacBook */
       .macbook-wrapper {
         width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        perspective: 1500px;
-        animation: fadeUp 1s ease-out 0.2s forwards;
-        opacity: 0;
+        max-width: 1050px;
+        margin: 1rem auto 4rem auto;
+        perspective: 2000px;
+        animation: fadeUp 1s ease-out forwards;
       }
 
-      .macbook-frame {
+      .macbook-lid {
         position: relative;
         width: 100%;
-        background: #151515;
+        padding-bottom: 64%; /* 16:10 aspect ratio approx */
+        background: #b3b3b3; /* Aluminum exterior edge */
         border-radius: 24px 24px 0 0;
-        padding: 2rem 2rem 2.5rem 2rem;
-        box-shadow: inset 0 2px 4px rgba(255,255,255,0.15), 0 20px 50px rgba(0,0,0,0.3);
+        box-shadow: inset 0 2px 6px rgba(255,255,255,0.5), 0 20px 40px rgba(0,0,0,0.3);
+        transform: rotateX(2deg); /* Slight 3D tilt */
+        transform-origin: bottom center;
       }
 
-      /* Webcam notch */
-      .macbook-frame::before {
+      .macbook-bezel {
+        position: absolute;
+        top: 3%;
+        left: 2%;
+        right: 2%;
+        bottom: 3.5%;
+        background: #000;
+        border-radius: 12px 12px 0 0;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+      }
+
+      .macbook-bezel::before {
         content: '';
         position: absolute;
-        top: 0.75rem;
+        top: 12px;
         left: 50%;
         transform: translateX(-50%);
-        width: 10px;
-        height: 10px;
-        background: #000;
+        width: 6px;
+        height: 6px;
+        background: #1a1a1a;
         border-radius: 50%;
-        box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+        border: 1px solid #333;
+        z-index: 5;
       }
 
       .macbook-screen {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        background: #fff;
-        border-radius: 6px;
+        position: absolute;
+        top: 30px;
+        left: 12px;
+        right: 12px;
+        bottom: 24px;
+        background: #111; /* screen off color */
+        border-radius: 4px;
         overflow: hidden;
       }
 
@@ -147,29 +97,142 @@
         width: 100%;
         height: 100%;
         border: none;
+        background: #fff;
       }
 
       .macbook-base {
         position: relative;
         width: 114%;
-        height: 24px;
-        background: linear-gradient(180deg, #e5e5e5 0%, #c4c4c4 100%);
+        height: 16px;
+        background: linear-gradient(180deg, #d9d9d9 0%, #a3a3a3 100%);
         left: -7%;
-        border-radius: 0 0 12px 12px;
-        box-shadow: inset 0 -4px 10px rgba(0,0,0,0.15), 0 30px 40px rgba(0,0,0,0.15);
-        display: flex;
-        justify-content: center;
+        border-radius: 0 0 16px 16px;
+        box-shadow: inset 0 -2px 10px rgba(0,0,0,0.1), 0 30px 40px rgba(0,0,0,0.25);
+        z-index: 2;
+        margin-top: -2px;
       }
 
+      /* Base cutout */
       .macbook-base::before {
         content: '';
         position: absolute;
         top: 0;
-        width: 18%;
-        height: 8px;
-        background: #a3a3a3;
-        border-radius: 0 0 8px 8px;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 6px;
+        background: #888;
+        border-radius: 0 0 6px 6px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+      }
+
+      /* Hinge shadow */
+      .macbook-base::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 5%;
+        right: 5%;
+        height: 3px;
+        background: #555;
+        border-radius: 0 0 4px 4px;
+      }
+
+      /* Screen Overlay - macOS Lock Screen Style */
+      .screen-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+      }
+
+      .overlay-content {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255,255,255,0.15);
+        padding: 2.5rem;
+        border-radius: 20px;
+        text-align: center;
+        color: #fff;
+        width: 90%;
+        max-width: 380px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      }
+
+      .overlay-content svg {
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .overlay-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .overlay-content p {
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      .overlay-creds {
+        background: rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        font-family: monospace;
+        font-size: 1.05rem;
+        text-align: left;
+      }
+
+      .overlay-creds div {
+        margin: 0.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .overlay-creds div span {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .overlay-creds div strong {
+        color: #4ade80; /* matrix green */
+        font-size: 1.1rem;
+      }
+
+      .overlay-btn {
+        background: #fff;
+        color: #000;
+        border: none;
+        padding: 0.85rem 1.5rem;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .overlay-btn:hover {
+        transform: scale(1.03);
+        background: #f0f0f0;
       }
 
       @keyframes fadeUp {
@@ -178,15 +241,17 @@
       }
 
       @media (max-width: 768px) {
-        .auth-creds {
-          flex-direction: column;
-        }
-        .macbook-frame {
-          padding: 1rem 1rem 1.5rem 1rem;
-          border-radius: 12px 12px 0 0;
-        }
         .macbook-base {
-          height: 16px;
+          height: 12px;
+        }
+        .macbook-bezel {
+          top: 2%; bottom: 2%; left: 1%; right: 1%;
+        }
+        .macbook-screen {
+          top: 16px; left: 6px; right: 6px; bottom: 12px;
+        }
+        .overlay-content {
+          padding: 1.5rem;
         }
       }
     </style>
@@ -200,30 +265,33 @@
     <!-- Content Layout -->
     <div class="demo-container">
       
-      <!-- Credentials Block -->
-      <div class="auth-portal">
-        <div class="auth-header">
-          <h3>Demo Access</h3>
-          <p>Use these test credentials to securely authenticate into the live project below.</p>
-        </div>
-        
-        <div class="auth-creds">
-          <div class="auth-cred-item">
-            <span class="cred-label">Username</span>
-            <span class="cred-value">admin</span>
-          </div>
-          <div class="auth-cred-item">
-            <span class="cred-label">Password</span>
-            <span class="cred-value">admin123</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- MacBook Mockup with Live Iframe -->
+      <!-- MacBook Mockup with Live Iframe & Overlay -->
       <div class="macbook-wrapper">
-        <div class="macbook-frame">
-          <div class="macbook-screen">
-            <iframe src="https://route53-clone-5.vercel.app/" title="Route53 Clone Live Preview"></iframe>
+        <div class="macbook-lid">
+          <div class="macbook-bezel">
+            <div class="macbook-screen">
+              
+              <!-- Screen Overlay -->
+              <div class="screen-overlay" id="demoOverlay">
+                <div class="overlay-content">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <h2>System Locked</h2>
+                  <p>Please note these test credentials to authenticate into the live environment.</p>
+                  <div class="overlay-creds">
+                    <div><span>Username</span> <strong>admin</strong></div>
+                    <div><span>Password</span> <strong>admin123</strong></div>
+                  </div>
+                  <button class="overlay-btn" onclick="document.getElementById('demoOverlay').style.opacity='0'; setTimeout(()=>document.getElementById('demoOverlay').style.display='none', 500);">
+                    Unlock & Launch Demo
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Project Iframe -->
+              <iframe src="https://route53-clone-5.vercel.app/" title="Route53 Clone Live Preview"></iframe>
+              
+            </div>
           </div>
         </div>
         <div class="macbook-base"></div>
