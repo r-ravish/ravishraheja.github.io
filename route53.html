@@ -31,12 +31,11 @@
       .split-layout {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        min-height: calc(100vh - 80px);
         align-items: center;
         gap: 4rem;
         max-width: 1400px;
         margin: 0 auto;
-        padding: 2rem 4vw;
+        padding: 2rem 4vw 4rem 4vw;
         position: relative;
         z-index: 1;
       }
@@ -45,21 +44,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-      }
-
-      .left-content .huge-title {
-        font-size: clamp(3rem, 6vw, 4.5rem);
-        margin-bottom: 1.5rem;
-        line-height: 1.1;
-      }
-
-      .left-content .subtitle {
-        font-size: clamp(1.1rem, 2vw, 1.35rem);
-        color: var(--text-muted);
-        line-height: 1.6;
-        margin-bottom: 3rem;
-        max-width: 600px;
+        align-items: center; /* Centered in its column */
       }
 
       .auth-portal {
@@ -243,22 +228,22 @@
         .split-layout {
           grid-template-columns: 1fr;
         }
-        .left-content {
-          align-items: center;
-          text-align: center;
-        }
         .right-visual {
           min-height: 400px;
         }
       }
     </style>
 
+    <!-- HERO SECTION (Centered at Top) -->
+    <section class="cp-hero container animate-up" style="text-align: center; margin-top: 3.5rem; margin-bottom: 3rem;">
+      <h1 class="huge-title typewriter" style="font-size: clamp(2.2rem, 6.5vw, 5.5rem); margin-bottom: 0.5rem; white-space: nowrap;">Route53 Clone<span class="gradient-cursor active"></span></h1>
+      <p class="subtitle" style="font-size: clamp(1.055rem, 2vw, 1.525rem); font-weight: 500; color: var(--text-dark); max-width: 800px; margin: 0 auto;">A fully functional DNS management platform inspired by AWS Route 53, featuring complete CRUD operations and secure authentication.</p>
+    </section>
+
+    <!-- Content Layout (Auth Portal + Animation) -->
     <div class="split-layout">
       <!-- Left Side -->
       <div class="left-content">
-        <h1 class="huge-title typewriter" style="white-space: nowrap;">Route53 Clone<span class="gradient-cursor active"></span></h1>
-        <p class="subtitle animate-up">A fully functional DNS management platform inspired by AWS Route 53, featuring complete CRUD operations and secure authentication.</p>
-        
         <div class="auth-portal">
           <div class="auth-header">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
