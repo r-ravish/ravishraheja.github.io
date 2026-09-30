@@ -272,17 +272,43 @@
 
         .login-creds {
           flex: 1;
-          background: var(--bg-light);
-          padding: 1.5rem;
-          border-radius: 8px;
-          border-left: 4px solid #000;
+          background: #0f1115;
+          padding: 1.25rem;
+          border-radius: 10px;
+          border: 1px solid rgba(0,0,0,0.1);
+          box-shadow: inset 0 2px 10px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.05);
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
         }
 
-        .login-creds div {
+        .cred-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: rgba(255,255,255,0.04);
+          padding: 0.75rem 1rem;
+          border-radius: 6px;
+          border: 1px solid rgba(255,255,255,0.05);
           font-family: monospace;
-          font-size: 1.1rem;
-          color: var(--text-dark);
-          margin: 0.25rem 0;
+          transition: background 0.2s;
+        }
+
+        .cred-item:hover {
+          background: rgba(255,255,255,0.08);
+        }
+
+        .cred-label {
+          color: #8b949e;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .cred-value {
+          color: #58a6ff;
+          font-weight: 600;
+          font-size: 1.05rem;
         }
 
         /* Sleek Grid Layout */
@@ -406,8 +432,14 @@
             <p>To access the live project, please log in with the following test credentials:</p>
           </div>
           <div class="login-creds">
-            <div>Email: <strong>admin@company.com</strong></div>
-            <div>Password: <strong>adminpassword</strong></div>
+            <div class="cred-item">
+              <span class="cred-label">Email</span>
+              <span class="cred-value">admin@company.com</span>
+            </div>
+            <div class="cred-item">
+              <span class="cred-label">Password</span>
+              <span class="cred-value">adminpassword</span>
+            </div>
           </div>
         </div>
 
