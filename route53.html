@@ -41,84 +41,92 @@
           padding: 2rem 1rem;
         }
 
-        .login-card {
+        .auth-portal {
+          max-width: 500px;
+          margin: 0 auto;
           background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.1);
-          border-radius: 12px;
-          padding: 2rem;
-          margin: 0 auto 4rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          max-width: 800px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-          gap: 2rem;
+          border-radius: 16px;
+          padding: 3rem;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+          border: 1px solid rgba(0,0,0,0.06);
+          text-align: center;
         }
 
-        .login-info {
-          flex: 1;
-          font-size: 1.1rem;
+        .auth-header svg {
+          margin-bottom: 1.5rem;
+          color: #ff5f56;
+        }
+
+        .auth-header h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: var(--text-dark);
+        }
+
+        .auth-header p {
           color: var(--text-muted);
+          font-size: 1.05rem;
+          line-height: 1.6;
+          margin-bottom: 2.5rem;
         }
 
-        .login-creds {
-          flex: 1;
+        .auth-creds {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 1rem;
         }
 
-        .cred-item {
+        .auth-cred-item {
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          background: #ffffff;
-          padding: 0.85rem 1.25rem;
+          align-items: center;
+          padding: 1rem 1.5rem;
+          background: var(--bg-light);
           border-radius: 8px;
-          border: 1px solid rgba(0,0,0,0.06);
-          font-family: monospace;
+          border: 1px solid rgba(0,0,0,0.05);
           transition: all 0.2s;
         }
 
-        .cred-item:hover {
+        .auth-cred-item:hover {
           border-color: rgba(0,0,0,0.15);
-          background: var(--bg-light);
+          background: #ffffff;
         }
 
         .cred-label {
-          color: var(--text-muted);
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           text-transform: uppercase;
+          color: var(--text-muted);
+          font-weight: 600;
           letter-spacing: 0.05em;
         }
 
         .cred-value {
-          color: var(--text-dark);
+          font-family: monospace;
+          font-size: 1.1rem;
           font-weight: 600;
-          font-size: 1.05rem;
+          color: var(--text-dark);
         }
 
         @media (max-width: 768px) {
-          .login-card {
-            flex-direction: column;
-            align-items: stretch;
+          .auth-portal {
+            padding: 2rem;
           }
         }
       </style>
 
       <div class="demo-container">
-        <div class="login-card animate-up">
-          <div class="login-info">
-            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark); font-size: 1.2rem;">Demo Access</h4>
-            <p>Click on <strong>Live Project ↗</strong> in the top right to get started, and use these test credentials to log in:</p>
+        <div class="auth-portal animate-up">
+          <div class="auth-header">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>Demo Access</h3>
+            <p>Click on <strong>Live Project ↗</strong> in the top right to launch the app, and use these test credentials to securely authenticate.</p>
           </div>
-          <div class="login-creds">
-            <div class="cred-item">
+          <div class="auth-creds">
+            <div class="auth-cred-item">
               <span class="cred-label">Username</span>
               <span class="cred-value">admin</span>
             </div>
-            <div class="cred-item">
+            <div class="auth-cred-item">
               <span class="cred-label">Password</span>
               <span class="cred-value">admin123</span>
             </div>
