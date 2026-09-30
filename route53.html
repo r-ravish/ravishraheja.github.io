@@ -28,39 +28,26 @@
 
   <main>
     <style>
-      .split-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 4rem;
-        max-width: 1400px;
+      .demo-container {
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem 4vw 4rem 4vw;
-        position: relative;
-        z-index: 1;
-      }
-
-      .left-content {
+        padding: 0 1rem 4rem 1rem;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center; /* Centered in its column */
+        align-items: center;
       }
 
       .auth-portal {
         width: 100%;
-        max-width: 480px;
+        max-width: 600px;
         background: #ffffff;
         border-radius: 16px;
-        padding: 2.5rem;
+        padding: 2rem;
         box-shadow: 0 10px 40px rgba(0,0,0,0.04);
         border: 1px solid rgba(0,0,0,0.06);
+        text-align: center;
+        margin-bottom: 4rem;
         animation: fadeUp 0.8s ease-out forwards;
-      }
-
-      .auth-header svg {
-        margin-bottom: 1rem;
-        color: #ff5f56;
       }
 
       .auth-header h3 {
@@ -73,17 +60,17 @@
         color: var(--text-muted);
         font-size: 0.95rem;
         line-height: 1.5;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
 
       .auth-creds {
         display: flex;
-        flex-direction: column;
-        gap: 0.85rem;
-        margin-bottom: 2rem;
+        gap: 1rem;
+        justify-content: center;
       }
 
       .auth-cred-item {
+        flex: 1;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -114,187 +101,134 @@
         color: var(--text-dark);
       }
 
-      .launch-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+      /* MacBook Mockup */
+      .macbook-wrapper {
         width: 100%;
-        padding: 1rem;
-        background: var(--text-dark);
-        color: #fff;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1.05rem;
-        text-decoration: none;
-        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        max-width: 1000px;
+        margin: 0 auto;
+        perspective: 1500px;
+        animation: fadeUp 1s ease-out 0.2s forwards;
+        opacity: 0;
       }
 
-      .launch-btn:hover {
-        background: #000;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      }
-
-      /* Right Side Animations */
-      .right-visual {
+      .macbook-frame {
         position: relative;
         width: 100%;
-        height: 100%;
-        min-height: 500px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: #151515;
+        border-radius: 24px 24px 0 0;
+        padding: 2rem 2rem 2.5rem 2rem;
+        box-shadow: inset 0 2px 4px rgba(255,255,255,0.15), 0 20px 50px rgba(0,0,0,0.3);
       }
 
-      .server-node {
+      /* Webcam notch */
+      .macbook-frame::before {
+        content: '';
         position: absolute;
-        width: 80px;
-        height: 80px;
-        background: #ffffff;
-        border: 1px solid rgba(0,0,0,0.08);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        z-index: 2;
-        animation: floatNode 6s ease-in-out infinite;
-      }
-
-      .server-node.main {
-        width: 120px;
-        height: 120px;
-        border-radius: 30px;
-        z-index: 3;
-        animation-duration: 8s;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      }
-
-      .server-node.n1 { top: 10%; left: 15%; animation-delay: 0s; }
-      .server-node.n2 { bottom: 20%; left: 10%; animation-delay: 1.5s; }
-      .server-node.n3 { top: 20%; right: 10%; animation-delay: 3s; }
-      .server-node.n4 { bottom: 15%; right: 20%; animation-delay: 4.5s; }
-
-      .pulse-ring {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 2px solid rgba(66, 133, 244, 0.4);
-        top: 0;
-        left: 0;
-        animation: pulseOut 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-      }
-
-      .pulse-ring:nth-child(2) { animation-delay: 1s; }
-      .pulse-ring:nth-child(3) { animation-delay: 2s; }
-
-      .connection-line {
-        position: absolute;
-        top: 50%;
+        top: 0.75rem;
         left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        background: #000;
+        border-radius: 50%;
+        box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+      }
+
+      .macbook-screen {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        background: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .macbook-screen iframe {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
-        border: 1px dashed rgba(0,0,0,0.1);
-        transform: translate(-50%, -50%);
-        animation: spinSlow 30s linear infinite;
-        z-index: 1;
+        border: none;
       }
 
-      .connection-line.l2 { width: 150%; height: 150%; animation-direction: reverse; animation-duration: 40s; }
-
-      @keyframes floatNode {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(3deg); }
+      .macbook-base {
+        position: relative;
+        width: 114%;
+        height: 24px;
+        background: linear-gradient(180deg, #e5e5e5 0%, #c4c4c4 100%);
+        left: -7%;
+        border-radius: 0 0 12px 12px;
+        box-shadow: inset 0 -4px 10px rgba(0,0,0,0.15), 0 30px 40px rgba(0,0,0,0.15);
+        display: flex;
+        justify-content: center;
       }
 
-      @keyframes pulseOut {
-        0% { transform: scale(1); opacity: 0.8; }
-        100% { transform: scale(2.5); opacity: 0; border-color: rgba(168, 85, 247, 0); }
-      }
-
-      @keyframes spinSlow {
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
+      .macbook-base::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 18%;
+        height: 8px;
+        background: #a3a3a3;
+        border-radius: 0 0 8px 8px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
       }
 
       @keyframes fadeUp {
-        0% { opacity: 0; transform: translateY(30px); }
+        0% { opacity: 0; transform: translateY(40px); }
         100% { opacity: 1; transform: translateY(0); }
       }
 
-      @media (max-width: 992px) {
-        .split-layout {
-          grid-template-columns: 1fr;
+      @media (max-width: 768px) {
+        .auth-creds {
+          flex-direction: column;
         }
-        .right-visual {
-          min-height: 400px;
+        .macbook-frame {
+          padding: 1rem 1rem 1.5rem 1rem;
+          border-radius: 12px 12px 0 0;
+        }
+        .macbook-base {
+          height: 16px;
         }
       }
     </style>
 
-    <!-- HERO SECTION (Centered at Top) -->
-    <section class="cp-hero container animate-up" style="text-align: center; margin-top: 3.5rem; margin-bottom: 3rem;">
+    <!-- HERO SECTION -->
+    <section class="cp-hero container animate-up" style="text-align: center; margin-top: 3.5rem; margin-bottom: 2rem;">
       <h1 class="huge-title typewriter" style="font-size: clamp(2.2rem, 6.5vw, 5.5rem); margin-bottom: 0.5rem; white-space: nowrap;">Route53 Clone<span class="gradient-cursor active"></span></h1>
       <p class="subtitle" style="font-size: clamp(1.055rem, 2vw, 1.525rem); font-weight: 500; color: var(--text-dark); max-width: 800px; margin: 0 auto;">A fully functional DNS management platform inspired by AWS Route 53, featuring complete CRUD operations and secure authentication.</p>
     </section>
 
-    <!-- Content Layout (Auth Portal + Animation) -->
-    <div class="split-layout">
-      <!-- Left Side -->
-      <div class="left-content">
-        <div class="auth-portal">
-          <div class="auth-header">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <h3>Demo Access</h3>
-            <p>Use these test credentials to securely authenticate into the live environment.</p>
-          </div>
-          
-          <div class="auth-creds">
-            <div class="auth-cred-item">
-              <span class="cred-label">Username</span>
-              <span class="cred-value">admin</span>
-            </div>
-            <div class="auth-cred-item">
-              <span class="cred-label">Password</span>
-              <span class="cred-value">admin123</span>
-            </div>
-          </div>
-
-          <a href="https://route53-clone-5.vercel.app/" target="_blank" class="launch-btn">
-            Launch Live Project
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Side (Animated Graphic) -->
-      <div class="right-visual animate-up" style="animation-delay: 0.2s;">
-        <div class="connection-line"></div>
-        <div class="connection-line l2"></div>
-
-        <!-- Floating Nodes -->
-        <div class="server-node main">
-          <div class="pulse-ring"></div>
-          <div class="pulse-ring"></div>
-          <div class="pulse-ring"></div>
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2H3v16h5v4h8v-4h5V2zm-9 9H8V7h4v4zm5 0h-3V7h3v4z"/></svg>
+    <!-- Content Layout -->
+    <div class="demo-container">
+      
+      <!-- Credentials Block -->
+      <div class="auth-portal">
+        <div class="auth-header">
+          <h3>Demo Access</h3>
+          <p>Use these test credentials to securely authenticate into the live project below.</p>
         </div>
         
-        <div class="server-node n1">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        </div>
-        <div class="server-node n2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 2 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 20 16z"/></svg>
-        </div>
-        <div class="server-node n3">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-        </div>
-        <div class="server-node n4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M6 12h12M6 16h12"/></svg>
+        <div class="auth-creds">
+          <div class="auth-cred-item">
+            <span class="cred-label">Username</span>
+            <span class="cred-value">admin</span>
+          </div>
+          <div class="auth-cred-item">
+            <span class="cred-label">Password</span>
+            <span class="cred-value">admin123</span>
+          </div>
         </div>
       </div>
+
+      <!-- MacBook Mockup with Live Iframe -->
+      <div class="macbook-wrapper">
+        <div class="macbook-frame">
+          <div class="macbook-screen">
+            <iframe src="https://route53-clone-5.vercel.app/" title="Route53 Clone Live Preview"></iframe>
+          </div>
+        </div>
+        <div class="macbook-base"></div>
+      </div>
+
     </div>
   </main>
 
