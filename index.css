@@ -505,6 +505,45 @@ body {
   box-shadow: 0 12px 30px rgba(0,0,0,0.06);
 }
 
+.project-creds {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.project-cred-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  font-family: monospace;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.project-cred-item:hover {
+  border-color: rgba(0,0,0,0.15);
+  background: var(--bg-light);
+}
+
+.project-cred-label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.project-cred-value {
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .project-badge {
   font-size: 0.8rem;
   font-weight: 500;
