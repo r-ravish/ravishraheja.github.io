@@ -130,30 +130,30 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================= */
   const marqueeTrack = document.getElementById('marqueeTrack');
   const SKILLS_DATA = [
-    { class: 'devicon-python-plain colored', url: 'https://www.python.org/' },
-    { class: 'devicon-html5-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
-    { class: 'devicon-java-plain colored', url: 'https://www.java.com/' },
-    { class: 'devicon-react-original colored', url: 'https://react.dev/' },
-    { class: 'devicon-cplusplus-plain colored', url: 'https://isocpp.org/' },
-    { class: 'devicon-docker-plain colored', url: 'https://www.docker.com/' },
-    { class: 'devicon-mysql-plain colored', url: 'https://www.mysql.com/' },
-    { class: 'devicon-javascript-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-    { class: 'devicon-django-plain colored', url: 'https://www.djangoproject.com/' },
-    { class: 'devicon-fastapi-plain colored', url: 'https://fastapi.tiangolo.com/' },
-    { class: 'devicon-azure-plain colored', url: 'https://azure.microsoft.com/' },
-    { class: 'devicon-jupyter-plain colored', url: 'https://jupyter.org/' },
-    { class: 'devicon-css3-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-    { class: 'devicon-git-plain colored', url: 'https://git-scm.com/' },
-    { class: 'devicon-linux-plain colored', url: 'https://www.linux.org/' },
-    { class: 'devicon-bash-plain colored', url: 'https://www.gnu.org/software/bash/' },
-    { class: 'devicon-ubuntu-plain colored', url: 'https://ubuntu.com/' },
-    { class: 'devicon-github-original colored', url: 'https://github.com/' },
-    { class: 'devicon-vscode-plain colored', url: 'https://code.visualstudio.com/' },
-    { class: 'devicon-markdown-original colored', url: 'https://www.markdownguide.org/' },
-    { class: 'devicon-sqlite-plain colored', url: 'https://www.sqlite.org/' },
-    { class: 'devicon-firebase-plain colored', url: 'https://firebase.google.com/' },
-    { class: 'devicon-mongodb-plain colored', url: 'https://www.mongodb.com/' },
-    { class: 'devicon-postgresql-plain colored', url: 'https://www.postgresql.org/' }
+    { class: 'devicon-python-plain colored', url: 'https://www.python.org/', name: 'Python' },
+    { class: 'devicon-html5-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML', name: 'HTML5' },
+    { class: 'devicon-java-plain colored', url: 'https://www.java.com/', name: 'Java' },
+    { class: 'devicon-react-original colored', url: 'https://react.dev/', name: 'React' },
+    { class: 'devicon-cplusplus-plain colored', url: 'https://isocpp.org/', name: 'C++' },
+    { class: 'devicon-docker-plain colored', url: 'https://www.docker.com/', name: 'Docker' },
+    { class: 'devicon-mysql-plain colored', url: 'https://www.mysql.com/', name: 'MySQL' },
+    { class: 'devicon-javascript-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', name: 'JavaScript' },
+    { class: 'devicon-django-plain colored', url: 'https://www.djangoproject.com/', name: 'Django' },
+    { class: 'devicon-fastapi-plain colored', url: 'https://fastapi.tiangolo.com/', name: 'FastAPI' },
+    { class: 'devicon-azure-plain colored', url: 'https://azure.microsoft.com/', name: 'Azure' },
+    { class: 'devicon-jupyter-plain colored', url: 'https://jupyter.org/', name: 'Jupyter' },
+    { class: 'devicon-css3-plain colored', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS', name: 'CSS3' },
+    { class: 'devicon-git-plain colored', url: 'https://git-scm.com/', name: 'Git' },
+    { class: 'devicon-linux-plain colored', url: 'https://www.linux.org/', name: 'Linux' },
+    { class: 'devicon-bash-plain colored', url: 'https://www.gnu.org/software/bash/', name: 'Bash' },
+    { class: 'devicon-ubuntu-plain colored', url: 'https://ubuntu.com/', name: 'Ubuntu' },
+    { class: 'devicon-github-original colored', url: 'https://github.com/', name: 'GitHub' },
+    { class: 'devicon-vscode-plain colored', url: 'https://code.visualstudio.com/', name: 'VS Code' },
+    { class: 'devicon-markdown-original colored', url: 'https://www.markdownguide.org/', name: 'Markdown' },
+    { class: 'devicon-sqlite-plain colored', url: 'https://www.sqlite.org/', name: 'SQLite' },
+    { class: 'devicon-firebase-plain colored', url: 'https://firebase.google.com/', name: 'Firebase' },
+    { class: 'devicon-mongodb-plain colored', url: 'https://www.mongodb.com/', name: 'MongoDB' },
+    { class: 'devicon-postgresql-plain colored', url: 'https://www.postgresql.org/', name: 'PostgreSQL' }
   ];
   
   if (marqueeTrack) {
@@ -167,21 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
       icon.target = '_blank';
       icon.rel = 'noopener noreferrer';
       icon.innerHTML = `<i class="${FULL_SKILLS[i].class}"></i>`;
+      icon.title = FULL_SKILLS[i].name; // Tooltip on hover
       marqueeTrack.appendChild(icon);
     }
 
     const icons = document.querySelectorAll('.marquee-icon');
-    let scrollPos = 0;
-    
-    window.addEventListener('scroll', () => {
-      scrollPos = window.scrollY;
-    });
 
     function animateMarquee(time) {
-      // Horizontal movement tied to scroll
-      const scrollX = -(scrollPos * 0.5);
-      marqueeTrack.style.transform = `translateX(${scrollX}px)`;
-
       // Wavy Y-axis animation for each icon (slower, tighter height)
       icons.forEach((icon, index) => {
         const y = Math.sin(time * 0.0012 + index * 0.5) * 35;
