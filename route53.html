@@ -37,28 +37,70 @@
         align-items: center;
       }
 
-      /* iPad Pro Mockup */
-      .ipad-wrapper {
+      /* 3D Interactive Scene */
+      .scene {
         width: 100%;
-        max-width: 1150px;
+        max-width: 1024px; /* Slightly smaller as requested */
         margin: 1rem auto 4rem auto;
+        perspective: 2500px;
+        cursor: grab;
         animation: fadeUp 1s ease-out forwards;
+        position: relative;
+      }
+      .scene:active {
+        cursor: grabbing;
       }
 
-      .ipad-frame {
+      .drag-hint {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.8);
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        pointer-events: none;
+        animation: pulseHint 2s infinite;
+        z-index: 50;
+      }
+
+      @keyframes pulseHint {
+        0%, 100% { opacity: 0.8; transform: translate(-50%, 0); }
+        50% { opacity: 1; transform: translate(-50%, -5px); }
+      }
+
+      .ipad-3d {
         position: relative;
         width: 100%;
-        padding-bottom: 72%; /* Taller aspect ratio for more screen area */
-        background: #111; /* Uniform black bezel */
-        border-radius: 36px;
-        box-shadow: 
-          inset 0 0 0 2px #444, /* Metallic edge */
-          inset 0 0 0 3px #111,
-          0 20px 50px rgba(0,0,0,0.3);
+        padding-bottom: 72%;
+        transform-style: preserve-3d;
+        /* Start with a slight dramatic angle */
+        transform: rotateX(10deg) rotateY(-15deg);
+        transition: transform 0.05s linear;
       }
 
-      /* iPad Camera Hole (Top Center Landscape) */
-      .ipad-frame::before {
+      .ipad-face {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 36px;
+        backface-visibility: hidden;
+      }
+
+      /* Front Face */
+      .ipad-front {
+        background: #111;
+        box-shadow: inset 0 0 0 2px #444, inset 0 0 0 3px #111;
+        transform: translateZ(4px); /* Extrude front */
+      }
+
+      /* Camera Hole Front */
+      .ipad-front::before {
         content: '';
         position: absolute;
         top: 12px;
@@ -72,6 +114,77 @@
         z-index: 5;
       }
 
+      /* Back Face */
+      .ipad-back {
+        background: linear-gradient(135deg, #e5e5ea, #d1d1d6); /* Silver finish */
+        transform: rotateY(180deg) translateZ(4px); /* Extrude back */
+        box-shadow: inset 0 0 0 1px #b0b0b5, inset 0 0 30px rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Edge Layer to hide gaps */
+      .ipad-edge {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 36px;
+        background: #b0b0b5;
+        transform: translateZ(0);
+        box-shadow: 0 0 0 3px #a0a0a5;
+        backface-visibility: hidden;
+      }
+
+      /* Apple Logo SVG styling */
+      .apple-logo-svg {
+        width: 80px;
+        height: 80px;
+        fill: #999;
+        /* Shiny metallic effect */
+        filter: drop-shadow(0 1px 1px rgba(255,255,255,0.8)) drop-shadow(0 -1px 1px rgba(0,0,0,0.2));
+      }
+
+      /* Back Camera Module */
+      .camera-module {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: #d8d9da;
+        border-radius: 16px;
+        box-shadow: 
+          3px 3px 8px rgba(0,0,0,0.15),
+          -1px -1px 3px rgba(255,255,255,0.7),
+          inset 0 0 0 1px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .lens {
+        width: 22px;
+        height: 22px;
+        background: #000;
+        border-radius: 50%;
+        border: 2px solid #555;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.5);
+      }
+
+      .flash {
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: inset 0 0 3px #aaa;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
       .ipad-screen {
         position: absolute;
         top: 28px;
@@ -79,7 +192,7 @@
         right: 28px;
         bottom: 28px;
         background: #fff;
-        border-radius: 8px; /* Slight inner rounding */
+        border-radius: 8px;
         overflow: hidden;
       }
 
@@ -273,47 +386,70 @@
     <!-- Content Layout -->
     <div class="demo-container">
       
-      <!-- iPad Mockup with Live Iframe & Overlay -->
-      <div class="ipad-wrapper">
-        <div class="ipad-frame">
-          <div class="ipad-screen">
-            
-            <!-- Safari Window -->
-            <div class="safari-window">
-              <div class="safari-header">
-                <div class="safari-buttons">
-                  <span class="close-btn"></span>
-                  <span class="min-btn"></span>
-                  <span class="max-btn"></span>
+      <!-- 3D iPad Mockup -->
+      <div class="scene" id="sceneContainer">
+        <div class="drag-hint">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M19 9l3 3-3 3M9 19l3 3 3 3M2 12h20M12 2v20"/></svg>
+          Click & drag to rotate 360°
+        </div>
+
+        <div class="ipad-3d" id="ipadModel">
+          
+          <!-- Middle Edge -->
+          <div class="ipad-edge"></div>
+
+          <!-- Front Face -->
+          <div class="ipad-face ipad-front">
+            <div class="ipad-screen">
+              <!-- Safari Window -->
+              <div class="safari-window">
+                <div class="safari-header">
+                  <div class="safari-buttons">
+                    <span class="close-btn"></span>
+                    <span class="min-btn"></span>
+                    <span class="max-btn"></span>
+                  </div>
+                  <div class="safari-url">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"></path></svg>
+                    route53-clone.vercel.app
+                  </div>
+                  <div class="safari-actions">
+                    <button class="cred-toggle" onclick="document.getElementById('credModal').classList.toggle('active')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                      Credentials
+                    </button>
+                  </div>
                 </div>
-                <div class="safari-url">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z"></path></svg>
-                  route53-clone.vercel.app
-                </div>
-                <div class="safari-actions">
-                  <button class="cred-toggle" onclick="document.getElementById('credModal').classList.toggle('active')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
-                    Credentials
-                  </button>
-                </div>
-              </div>
-              
-              <div class="safari-body">
-                <!-- Live Project Iframe -->
-                <iframe src="https://route53-clone-5.vercel.app/" title="Route53 Clone Live Preview"></iframe>
                 
-                <!-- Credentials Modal inside browser -->
-                <div class="cred-modal" id="credModal">
-                  <h4>Demo Credentials</h4>
-                  <div class="overlay-creds">
-                    <div><span>Username</span> <strong>admin</strong></div>
-                    <div><span>Password</span> <strong>admin123</strong></div>
+                <div class="safari-body">
+                  <iframe src="https://route53-clone-5.vercel.app/" title="Route53 Clone Live Preview"></iframe>
+                  
+                  <div class="cred-modal" id="credModal">
+                    <h4>Demo Credentials</h4>
+                    <div class="overlay-creds">
+                      <div><span>Username</span> <strong>admin</strong></div>
+                      <div><span>Password</span> <strong>admin123</strong></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
+
+          <!-- Back Face -->
+          <div class="ipad-face ipad-back">
+            <!-- Apple Logo -->
+            <svg class="apple-logo-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+            </svg>
+            <!-- Camera Bump -->
+            <div class="camera-module">
+              <div class="lens"></div>
+              <div class="lens"></div>
+              <div class="flash"></div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -321,5 +457,55 @@
   </main>
 
   <script src="script.js"></script>
+  <script>
+    // 3D iPad Rotation Logic
+    const scene = document.getElementById('sceneContainer');
+    const model = document.getElementById('ipadModel');
+    
+    let isDragging = false;
+    let startX, startY;
+    // Initial angles matching the CSS
+    let currentRotX = 10;
+    let currentRotY = -15;
+
+    // Pointer events for mouse and touch
+    scene.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      scene.style.cursor = 'grabbing';
+      
+      // Hide the drag hint on first interaction
+      const hint = document.querySelector('.drag-hint');
+      if(hint) hint.style.display = 'none';
+      
+      // Disable iframe pointer events while dragging so it doesn't swallow events
+      document.querySelector('.safari-body iframe').style.pointerEvents = 'none';
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if(!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      
+      // Adjust rotation speed
+      currentRotY += dx * 0.4;
+      currentRotX -= dy * 0.4;
+      
+      // Clamp X rotation to prevent flipping upside down over the top/bottom
+      currentRotX = Math.max(-60, Math.min(60, currentRotX));
+      
+      model.style.transform = `rotateX(${currentRotX}deg) rotateY(${currentRotY}deg)`;
+      
+      startX = e.clientX;
+      startY = e.clientY;
+    });
+
+    window.addEventListener('pointerup', () => {
+      isDragging = false;
+      scene.style.cursor = 'grab';
+      document.querySelector('.safari-body iframe').style.pointerEvents = 'auto';
+    });
+  </script>
 </body>
 </html>
