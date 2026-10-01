@@ -40,8 +40,8 @@
       /* 3D Interactive Scene */
       .scene {
         width: 100%;
-        max-width: 1024px; /* Slightly smaller as requested */
-        margin: 1rem auto 4rem auto;
+        max-width: 1200px; /* Increased from 1024px */
+        margin: 2rem auto 4rem auto;
         perspective: 2500px;
         cursor: grab;
         animation: fadeUp 1s ease-out forwards;
@@ -78,7 +78,7 @@
       .ipad-3d {
         position: relative;
         width: 100%;
-        padding-bottom: 72%;
+        aspect-ratio: 1.43; /* Fixes height collapse perfectly */
         transform-style: preserve-3d;
         /* Start straight */
         transform: rotateX(0deg) rotateY(0deg);
@@ -88,6 +88,8 @@
       .ipad-face {
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
         border-radius: 36px;
         backface-visibility: hidden;
       }
