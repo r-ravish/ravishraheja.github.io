@@ -51,30 +51,6 @@
         cursor: grabbing;
       }
 
-      .drag-hint {
-        position: absolute;
-        top: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0,0,0,0.8);
-        color: #fff;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        pointer-events: none;
-        animation: pulseHint 2s infinite;
-        z-index: 50;
-      }
-
-      @keyframes pulseHint {
-        0%, 100% { opacity: 0.8; transform: translate(-50%, 0); }
-        50% { opacity: 1; transform: translate(-50%, -5px); }
-      }
-
       .ipad-3d {
         position: relative;
         width: 100%;
@@ -444,11 +420,6 @@
       
       <!-- 3D iPad Mockup -->
       <div class="scene" id="sceneContainer">
-        <div class="drag-hint">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M19 9l3 3-3 3M9 19l3 3 3 3M2 12h20M12 2v20"/></svg>
-          Click & drag to rotate 360°
-        </div>
-
         <div class="ipad-3d" id="ipadModel">
           
           <!-- Middle Edge -->
@@ -547,10 +518,6 @@
       startX = e.clientX;
       startY = e.clientY;
       scene.style.cursor = 'grabbing';
-      
-      // Hide the drag hint on first interaction
-      const hint = document.querySelector('.drag-hint');
-      if(hint) hint.style.display = 'none';
       
       // Disable iframe pointer events while dragging so it doesn't swallow events
       document.querySelector('.safari-body iframe').style.pointerEvents = 'none';
