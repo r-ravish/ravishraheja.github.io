@@ -80,8 +80,8 @@
         width: 100%;
         padding-bottom: 72%;
         transform-style: preserve-3d;
-        /* Start with a slight dramatic angle */
-        transform: rotateX(10deg) rotateY(-15deg);
+        /* Start straight */
+        transform: rotateX(0deg) rotateY(0deg);
         transition: transform 0.05s linear;
       }
 
@@ -116,12 +116,13 @@
 
       /* Back Face */
       .ipad-back {
-        background: linear-gradient(135deg, #e5e5ea, #d1d1d6); /* Silver finish */
+        background: linear-gradient(135deg, #e8e8ed 0%, #d1d1d6 40%, #e8e8ed 100%); /* Realistic aluminum finish */
         transform: rotateY(180deg) translateZ(4px); /* Extrude back */
-        box-shadow: inset 0 0 0 1px #b0b0b5, inset 0 0 30px rgba(0,0,0,0.05);
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08), inset 0 0 40px rgba(0,0,0,0.05);
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       }
 
       /* Edge Layer to hide gaps */
@@ -137,52 +138,105 @@
 
       /* Apple Logo SVG styling */
       .apple-logo-svg {
-        width: 80px;
-        height: 80px;
-        fill: #999;
-        /* Shiny metallic effect */
-        filter: drop-shadow(0 1px 1px rgba(255,255,255,0.8)) drop-shadow(0 -1px 1px rgba(0,0,0,0.2));
+        width: 90px;
+        height: 90px;
+        fill: url(#metallicGradient);
+        /* Shiny metallic reflection */
+        filter: drop-shadow(0 1px 1px rgba(255,255,255,0.8)) drop-shadow(0 -1px 1px rgba(0,0,0,0.1));
       }
 
-      /* Back Camera Module */
+      /* Realistic Back Camera Module */
       .camera-module {
         position: absolute;
-        top: 30px;
-        right: 30px;
-        width: 70px;
-        height: 70px;
-        background: #d8d9da;
-        border-radius: 16px;
+        top: 24px;
+        right: 24px;
+        width: 85px;
+        height: 85px;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 22px;
         box-shadow: 
-          3px 3px 8px rgba(0,0,0,0.15),
-          -1px -1px 3px rgba(255,255,255,0.7),
-          inset 0 0 0 1px rgba(0,0,0,0.05);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
+          4px 4px 10px rgba(0,0,0,0.15),
+          inset 1px 1px 2px rgba(255,255,255,0.7),
+          inset -1px -1px 2px rgba(0,0,0,0.05);
+        border: 1px solid rgba(255,255,255,0.2);
       }
 
-      .lens {
-        width: 22px;
-        height: 22px;
-        background: #000;
+      .lens-container {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        background: #111;
         border-radius: 50%;
         border: 2px solid #555;
-        box-shadow: inset 0 0 5px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.5);
+        box-shadow: inset 0 0 10px #000, 0 1px 2px rgba(255,255,255,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Inner lens reflection */
+      .lens-container::after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: radial-gradient(circle at 35% 35%, #4a4a7a 0%, #111 60%);
+        border-radius: 50%;
+      }
+
+      .lens-1 { top: 8px; left: 8px; }
+      .lens-2 { bottom: 8px; left: 8px; }
+
+      .lidar {
+        position: absolute;
+        top: 32px;
+        right: 12px;
+        width: 20px;
+        height: 20px;
+        background: #151515;
+        border-radius: 50%;
+        box-shadow: inset 0 0 5px #000;
       }
 
       .flash {
-        width: 8px;
-        height: 8px;
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        width: 12px;
+        height: 12px;
         background: #fff;
         border-radius: 50%;
-        box-shadow: inset 0 0 3px #aaa;
+        box-shadow: inset 0 0 3px #ffe5b4, 0 0 3px rgba(255,255,255,0.8);
+      }
+      
+      .mic {
         position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
+        bottom: 24px;
+        right: 20px;
+        width: 5px;
+        height: 5px;
+        background: #333;
+        border-radius: 50%;
+        box-shadow: inset 0 1px 1px #000;
+      }
+
+      /* Smart Connector Pins */
+      .smart-connector {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .smart-pin {
+        width: 8px;
+        height: 8px;
+        background: #b0b0b5;
+        border-radius: 50%;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.7);
       }
 
       .ipad-screen {
@@ -440,13 +494,30 @@
           <div class="ipad-face ipad-back">
             <!-- Apple Logo -->
             <svg class="apple-logo-svg" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="metallicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#a0a0a5"/>
+                  <stop offset="50%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#8a8a8e"/>
+                </linearGradient>
+              </defs>
               <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
             </svg>
+            
             <!-- Camera Bump -->
             <div class="camera-module">
-              <div class="lens"></div>
-              <div class="lens"></div>
+              <div class="lens-container lens-1"></div>
+              <div class="lens-container lens-2"></div>
+              <div class="lidar"></div>
               <div class="flash"></div>
+              <div class="mic"></div>
+            </div>
+
+            <!-- Smart Connector -->
+            <div class="smart-connector">
+              <div class="smart-pin"></div>
+              <div class="smart-pin"></div>
+              <div class="smart-pin"></div>
             </div>
           </div>
 
@@ -464,9 +535,9 @@
     
     let isDragging = false;
     let startX, startY;
-    // Initial angles matching the CSS
-    let currentRotX = 10;
-    let currentRotY = -15;
+    // Start straight initially
+    let currentRotX = 0;
+    let currentRotY = 0;
 
     // Pointer events for mouse and touch
     scene.addEventListener('pointerdown', (e) => {
