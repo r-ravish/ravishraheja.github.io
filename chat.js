@@ -12,7 +12,7 @@
    state instead of giving up on the first failed attempt.
    ========================================================================= */
 (function () {
-  const API_BASE_PROD = '';
+  const API_BASE_PROD = 'https://ravish-portfolio-api.onrender.com';
 
   const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const API_BASE = isLocal
@@ -81,7 +81,7 @@
 
   // The thread lives in the page (no inner scroll area): newest entry on top,
   // right under the ask box, so nothing needs to scroll.
-  function scrollToBottom() {}
+  function scrollToBottom() { }
 
   const MAX_ENTRIES = 6;
   let currentEntry = null;   // the entry waiting for its answer
