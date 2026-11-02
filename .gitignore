@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+
+# Private deployment notes
+DEPLOYMENT.md
+
+# Backend secrets and local environment
+backend/.env
+backend/.venv/
+backend/logs/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc

@@ -4,32 +4,326 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get to know me | Ravish Raheja</title>
-  <meta name="description" content="About page – coming soon.">
+  <title>Ravish Raheja | About</title>
+  <meta name="description" content="Get to know Ravish Raheja: skills, Microsoft certifications, achievements, and an AI assistant that answers questions about his profile.">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 
 <body>
   <!-- Canvas Background for { } Particles -->
   <canvas id="particleCanvas"></canvas>
 
+  <!-- Sticky Navigation -->
   <nav class="sticky-nav">
-    <div class="nav-links">
-      <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 0.5rem;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Home
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links gk-nav" id="navLinks">
+      <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--text-dark);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
       </a>
+      <div class="gk-nav-right">
+        <a href="#ask" class="nav-link">Ask AI</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="resume.html" target="_blank" rel="noopener noreferrer" class="nav-link" style="color: #ff5f56; font-weight: 600;">Resume ↗</a>
+      </div>
     </div>
   </nav>
 
-  <main style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-    <div class="container" style="text-align: center;">
-      <h1 class="huge-title" style="margin-bottom: 1.5rem;">Coming soon.</h1>
-      <p class="subtitle">This page is under construction. Check back shortly.</p>
-    </div>
+  <main>
+    <!-- HERO — editorial, left-aligned -->
+    <header class="gk-hero container">
+      <p class="gk-eyebrow animate-up">About me</p>
+      <h1 class="gk-headline typewriter">I build AI systems that make it to production.<span class="gradient-cursor"></span></h1>
+
+      <div class="gk-lede animate-up">
+        <p>I build at the intersection of AI and real-world problems, covering what most teams hire two people for. I love taking ideas from concept to deployment - whether that's designing RAG pipelines and tool-calling agents, building the FastAPI services behind them, or shipping an Android app for the first time - on an Azure stack backed by five Microsoft certifications.</p>
+        <p>When I'm not coding, I'm probably at a hackathon, mentoring students as president of my campus GeeksforGeeks chapter, or obsessing over how to make something 10x better. I believe in learning by building, failing fast, and iterating faster.</p>
+      </div>
+
+      <div class="gk-hero-actions animate-up">
+        <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-solid">View my resume</a>
+        <a href="#ask" class="btn-outline">Chat with my AI</a>
+        <a href="https://www.linkedin.com/in/ravish-raheja/" target="_blank" rel="noopener noreferrer" class="btn-outline">LinkedIn</a>
+      </div>
+    </header>
+
+    <!-- 01 · ASK AI — split layout -->
+    <section id="ask" class="container gk-section">
+      <div class="gk-split">
+        <div class="gk-split-left">
+          <p class="gk-index animate-up">01 · Ask AI</p>
+          <h2 class="gk-title typewriter">Don't take my word for it.<span class="gradient-cursor"></span></h2>
+          <p class="gk-desc animate-up">A small RAG assistant I built for this page. GPT-4o on Microsoft Foundry, with a retrieval layer written from scratch in FastAPI. It answers strictly from my profile, so no fluff.</p>
+          <p class="gk-desc gk-desc-note animate-up">Ask about my stack, my projects, or whether I'm open to work. For anything important, <a href="https://mail.google.com/mail/?view=cm&fs=1&to=www.ravishraheja@gmail.com" target="_blank" rel="noopener noreferrer">email me</a>.</p>
+        </div>
+
+        <div class="gk-split-right">
+          <div class="ask animate-up" id="chatShell" aria-live="polite">
+            <form class="ask-form" id="chatForm" autocomplete="off">
+              <svg class="ask-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+              <input id="chatInput" class="ask-input" type="text" name="message" maxlength="1000"
+                     placeholder="Ask anything about Ravish…" aria-label="Your question" required>
+              <button type="submit" id="chatSend" class="ask-send" aria-label="Ask">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </form>
+
+            <div class="ask-meta">
+              <div class="chat-status" id="chatStatus"><span class="chat-dot"></span>Connecting…</div>
+              <span class="ask-model">Iris · GPT-4o · RAG</span>
+            </div>
+
+            <div class="ask-chips" id="chatChips">
+              <span class="ask-chips-label">Try</span>
+              <button type="button" class="chat-chip" data-q="Why should I hire Ravish?">Why hire him?</button>
+              <button type="button" class="chat-chip" data-q="What certifications does Ravish have?">Certifications</button>
+              <button type="button" class="chat-chip" data-q="What is Ravish's strongest area and tech stack?">Tech stack</button>
+              <button type="button" class="chat-chip" data-q="Tell me about SmartBase and his role in it.">SmartBase</button>
+              <button type="button" class="chat-chip" data-q="Is Ravish open to internships, and how do I contact him?">Open to work?</button>
+            </div>
+
+            <div class="ask-thread" id="chatMessages"></div>
+
+            <p class="ask-footnote">Answers are generated from a profile document and may be imperfect.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · SKILLS: tabbed panel -->
+    <section id="skills" class="container gk-section">
+      <div class="gk-section-head animate-up">
+        <p class="gk-index">02 · Skills</p>
+        <h2 class="gk-title typewriter">What I work with.<span class="gradient-cursor"></span></h2>
+        <p class="gk-desc typewriter">The four tools I reach for first, then the full stack by category.</p>
+      </div>
+
+      <!-- Featured tools: the four I'd bet on -->
+      <div class="gk-stack-grid">
+        <div class="gk-stack-card animate-up">
+          <i class="devicon-python-plain colored"></i>
+          <h4>Python</h4>
+          <p>My primary language, from APIs to ML pipelines.</p>
+        </div>
+        <div class="gk-stack-card animate-up">
+          <i class="devicon-fastapi-plain colored"></i>
+          <h4>FastAPI</h4>
+          <p>My go-to framework for production AI backends.</p>
+        </div>
+        <div class="gk-stack-card animate-up">
+          <i class="devicon-azure-plain colored"></i>
+          <h4>Azure</h4>
+          <p>Where my systems live: Foundry, AI Search, Static Web Apps.</p>
+        </div>
+        <div class="gk-stack-card animate-up">
+          <i class="devicon-docker-plain colored"></i>
+          <h4>Docker</h4>
+          <p>Every project ships containerised and reproducible.</p>
+        </div>
+      </div>
+
+      <!-- The full stack: horizontal category rows -->
+      <div class="gk-ledger">
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>AI &amp; LLM engineering</h3></div>
+          <p class="gk-row-list">RAG pipelines · AI agents · MCP tool calling · Azure AI Foundry · Azure AI Search · Azure OpenAI / GPT-4o · LLM evaluation suites · Guardrails &amp; grounding · NLP &amp; speech-to-text</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>Languages</h3></div>
+          <p class="gk-row-list">Python · C++ · C · Java · SQL · JavaScript</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>Backend &amp; frameworks</h3></div>
+          <p class="gk-row-list">FastAPI · Django &amp; DRF · REST API design · React · Next.js · HTML / CSS</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>Cloud &amp; databases</h3></div>
+          <p class="gk-row-list">Microsoft Azure · Azure Static Web Apps · Serverless containers · PostgreSQL · MongoDB · MySQL · SQLite · Firebase</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>DevOps &amp; tooling</h3></div>
+          <p class="gk-row-list">Docker · Linux / Ubuntu · NGINX · Uvicorn · Git &amp; GitHub · Postman · Jupyter · Bash</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>Data &amp; machine learning</h3></div>
+          <p class="gk-row-list">Power BI · SQL analytics · Random Forest · Isolation Forest · Time-series anomaly detection</p>
+        </div>
+
+        <div class="gk-row animate-up">
+          <div class="gk-row-label"><h3>Hardware &amp; IoT</h3></div>
+          <p class="gk-row-list">Arduino UNO R4 WiFi · RFID (MFRC522) · OLED displays · Device-to-backend over WiFi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · CERTIFICATIONS — credential ledger -->
+    <section id="certifications" class="container gk-section">
+      <div class="gk-section-head animate-up">
+        <p class="gk-index">03 · Certifications</p>
+        <h2 class="gk-title typewriter">Microsoft certified, five times.<span class="gradient-cursor"></span></h2>
+        <p class="gk-desc typewriter">From Fundamentals to Associate. Click a certificate to zoom, or verify it at the source.</p>
+      </div>
+
+      <div class="gk-certs">
+        <!-- AI-103 — newest. No certificate image yet: drop one at assets/certifications/cert5.png
+             and replace the placeholder div with:
+             <div class="gk-cert-thumb hackathon-img-wrapper"><img src="assets/certifications/cert5.png" alt="Azure AI Apps and Agents Developer Associate certificate"></div> -->
+        <article class="gk-cert-row animate-up">
+          <div class="gk-cert-thumb hackathon-img-wrapper gk-cert-missing" data-label="AI-103" aria-label="Microsoft Certified: Azure AI Apps and Agents Developer Associate"></div>
+          <div class="gk-cert-info">
+            <h3>Azure AI Apps and Agents Developer Associate</h3>
+            <p class="gk-cert-meta"><span class="project-badge gk-level gk-level-associate">Associate</span> AI-103 · Issued Oct 2026</p>
+          </div>
+          <a href="https://learn.microsoft.com/api/credentials/share/en-us/RavishRaheja-2318/CBC005624F9FDFF9" target="_blank" rel="noopener noreferrer" class="hackathon-link gk-cert-verify">Verify
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </article>
+
+        <article class="gk-cert-row animate-up">
+          <div class="gk-cert-thumb hackathon-img-wrapper"><img src="assets/certifications/cert1.png" alt="Power BI Data Analyst Associate certificate"></div>
+          <div class="gk-cert-info">
+            <h3>Power BI Data Analyst Associate</h3>
+            <p class="gk-cert-meta"><span class="project-badge gk-level gk-level-associate">Associate</span> PL-300 · Issued May 2026</p>
+          </div>
+          <a href="https://learn.microsoft.com/api/credentials/share/en-us/RavishRaheja-2318/64135976A287E268" target="_blank" rel="noopener noreferrer" class="hackathon-link gk-cert-verify">Verify
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </article>
+
+        <article class="gk-cert-row animate-up">
+          <div class="gk-cert-thumb hackathon-img-wrapper"><img src="assets/certifications/cert2.png" alt="Azure Data Fundamentals certificate"></div>
+          <div class="gk-cert-info">
+            <h3>Azure Data Fundamentals</h3>
+            <p class="gk-cert-meta"><span class="project-badge gk-level">Fundamentals</span> DP-900 · Issued Aug 2025</p>
+          </div>
+          <a href="https://www.credly.com/badges/a6b15a7f-7a1d-40e3-96e5-797d4939c92c" target="_blank" rel="noopener noreferrer" class="hackathon-link gk-cert-verify">Verify
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </article>
+
+        <article class="gk-cert-row animate-up">
+          <div class="gk-cert-thumb hackathon-img-wrapper"><img src="assets/certifications/cert3.png" alt="Azure Fundamentals certificate"></div>
+          <div class="gk-cert-info">
+            <h3>Azure Fundamentals</h3>
+            <p class="gk-cert-meta"><span class="project-badge gk-level">Fundamentals</span> AZ-900 · Issued Jun 2025</p>
+          </div>
+          <a href="https://www.credly.com/badges/ee6f2275-0be5-4f82-9bae-e97dbdd23bf4" target="_blank" rel="noopener noreferrer" class="hackathon-link gk-cert-verify">Verify
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </article>
+
+        <article class="gk-cert-row animate-up">
+          <div class="gk-cert-thumb hackathon-img-wrapper"><img src="assets/certifications/cert4.png" alt="Azure AI Fundamentals certificate"></div>
+          <div class="gk-cert-info">
+            <h3>Azure AI Fundamentals</h3>
+            <p class="gk-cert-meta"><span class="project-badge gk-level">Fundamentals</span> AI-900 · Issued Nov 2024</p>
+          </div>
+          <a href="https://www.credly.com/badges/be5d6402-0e33-4548-a1c1-4b30a3cbb02a" target="_blank" rel="noopener noreferrer" class="hackathon-link gk-cert-verify">Verify
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04 · HACKATHON WINS -->
+    <section id="highlights" class="container gk-section">
+      <div class="gk-section-head animate-up">
+        <p class="gk-index">04 · Hackathon wins</p>
+        <h2 class="gk-title typewriter">Built under pressure.<span class="gradient-cursor"></span></h2>
+        <p class="gk-desc typewriter">Two award-winning builds, both shipped end to end at the event.</p>
+      </div>
+
+      <div class="gk-highlight-grid">
+        <div class="gk-highlight-card animate-up">
+          <span class="project-badge gk-level">1st Prize</span>
+          <h3>IoT Sensex · CampusPay</h3>
+          <p>Won first place for CampusPay: an Arduino RFID contactless payment system with a Django REST backend and Random Forest demand forecasting.</p>
+          <a href="campuspay.html" class="hackathon-link">See the project
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </div>
+
+        <div class="gk-highlight-card animate-up">
+          <span class="project-badge gk-level">Track winner</span>
+          <h3>ElevenLabs Track Prize · AURA</h3>
+          <p>Recognised for innovative use of real-time voice and conversational AI. I built AURA's perception layer: live speech capture, speech-to-text, and behavioral signal extraction.</p>
+          <a href="https://github.com/Divyansh-Wadhwa/AURA" target="_blank" rel="noopener noreferrer" class="hackathon-link">See the project
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · LEADERSHIP -->
+    <section id="leadership" class="container gk-section">
+      <div class="gk-section-head animate-up">
+        <p class="gk-index">05 · Leadership</p>
+        <h2 class="gk-title typewriter">Leading beyond the editor.<span class="gradient-cursor"></span></h2>
+      </div>
+
+      <div class="gk-lead-band animate-up">
+        <div class="gk-lead-text">
+          <span class="project-badge gk-level">GeeksforGeeks Student Chapter</span>
+          <h3>President</h3>
+          <p>I run my campus GeeksforGeeks chapter: planning and hosting workshops, hackathons and coding events, mentoring juniors, and growing a community that keeps showing up.</p>
+        </div>
+        <div class="gk-lead-stats">
+          <div class="gk-lead-stat">
+            <span class="gk-lead-num">15+</span>
+            <span class="gk-lead-label">Core team led</span>
+          </div>
+          <div class="gk-lead-stat">
+            <span class="gk-lead-num">12+</span>
+            <span class="gk-lead-label">Workshops &amp; events</span>
+          </div>
+          <div class="gk-lead-stat">
+            <span class="gk-lead-num">400+</span>
+            <span class="gk-lead-label">Students reached</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="dark-container-wrapper section-padding gk-cta">
+      <div class="dark-container" style="min-height: 44vh;">
+        <div class="dot-matrix"></div>
+        <div style="position: relative; z-index: 2; text-align: center;">
+          <h2 class="dark-inner-text" style="margin: 0 auto 1.5rem;">Hiring for AI or backend? Let's talk.</h2>
+          <p style="color: rgba(255,255,255,0.65); font-size: clamp(1rem, 1.6vw, 1.2rem); max-width: 560px; margin: 0 auto 2.25rem;">Open to internships and early-career roles where I can ship production AI systems.</p>
+          <div class="btn-group" style="margin-top: 0;">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=www.ravishraheja@gmail.com" target="_blank" rel="noopener noreferrer" class="btn-solid" style="background: #fff; color: #000; border-color: #fff;">Email me</a>
+            <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-outline" style="background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.15);">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="container gk-footer">
+      <span class="gk-footer-name">© 2026 Ravish Raheja</span>
+      <div class="gk-footer-links">
+        <a href="https://github.com/r-ravish" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/ravish-raheja/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://leetcode.com/u/ravishraheja/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+        <a href="https://x.com/ravish_05" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=www.ravishraheja@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+      </div>
+    </footer>
   </main>
 
+  <!-- Image Modal (certificate zoom) -->
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Zoomed certificate">
+  </div>
+
   <script src="script.js"></script>
+  <script src="chat.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+# Render Blueprint for the portfolio assistant API.
+# In Render: New + -> Blueprint -> pick this repo. Fill in the two secret
+# values when prompted. The static site stays on GitHub Pages.
+services:
+  - type: web
+    name: ravish-portfolio-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.13
+      - key: AZURE_OPENAI_ENDPOINT
+        sync: false            # e.g. https://metermitra-resource.openai.azure.com
+      - key: AZURE_OPENAI_API_KEY
+        sync: false
+      - key: AZURE_OPENAI_DEPLOYMENT
+        value: gpt-4o
+      - key: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
+        value: text-embedding-3-small
+      - key: ALLOWED_ORIGINS
+        value: https://ravishraheja.github.io,https://r-ravish.github.io
+      - key: SERVE_FRONTEND
+        value: "false"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "20"
