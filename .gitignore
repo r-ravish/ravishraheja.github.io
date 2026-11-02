@@ -1,5 +1,6 @@
-# OS
+# OS & Editor
 .DS_Store
+.claude/
 
 # Private deployment notes
 DEPLOYMENT.md
